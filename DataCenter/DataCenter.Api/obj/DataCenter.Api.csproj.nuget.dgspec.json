@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\DataCenter.Api\\DataCenter.Api.csproj": {}
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\DataCenter\\DataCenter.Api\\DataCenter.Api.csproj": {}
   },
   "projects": {
-    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\DataCenter.Api\\DataCenter.Api.csproj": {
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\DataCenter\\DataCenter.Api\\DataCenter.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\DataCenter.Api\\DataCenter.Api.csproj",
+        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\DataCenter\\DataCenter.Api\\DataCenter.Api.csproj",
         "projectName": "DataCenter.Api",
-        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\DataCenter.Api\\DataCenter.Api.csproj",
+        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\DataCenter\\DataCenter.Api\\DataCenter.Api.csproj",
         "packagesPath": "C:\\Users\\cefvi\\.nuget\\packages\\",
-        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\DataCenter.Api\\obj\\",
+        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\DataCenter\\DataCenter.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cefvi\\AppData\\Roaming\\NuGet\\NuGet.Config",

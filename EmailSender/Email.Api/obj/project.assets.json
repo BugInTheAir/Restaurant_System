@@ -5934,11 +5934,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\EmailSender\\Email.Api\\Email.Api.csproj",
+      "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\EmailSender\\Email.Api\\Email.Api.csproj",
       "projectName": "Email.Api",
-      "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\EmailSender\\Email.Api\\Email.Api.csproj",
+      "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\EmailSender\\Email.Api\\Email.Api.csproj",
       "packagesPath": "C:\\Users\\cefvi\\.nuget\\packages\\",
-      "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\EmailSender\\Email.Api\\obj\\",
+      "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\EmailSender\\Email.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\cefvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5954,8 +5954,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj": {
-              "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj"
+            "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Infrastructure\\User.Infrastructure.csproj": {
+              "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Infrastructure\\User.Infrastructure.csproj"
             }
           }
         }

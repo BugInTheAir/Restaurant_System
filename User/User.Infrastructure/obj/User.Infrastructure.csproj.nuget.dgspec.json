@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj": {}
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Infrastructure\\User.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj": {
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Domain\\User.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj",
+        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Domain\\User.Domain.csproj",
         "projectName": "User.Domain",
-        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj",
+        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Domain\\User.Domain.csproj",
         "packagesPath": "C:\\Users\\cefvi\\.nuget\\packages\\",
-        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\obj\\",
+        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cefvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -73,14 +73,14 @@
         }
       }
     },
-    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj": {
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Infrastructure\\User.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj",
+        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Infrastructure\\User.Infrastructure.csproj",
         "projectName": "User.Infrastructure",
-        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj",
+        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Infrastructure\\User.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\cefvi\\.nuget\\packages\\",
-        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\obj\\",
+        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cefvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -96,8 +96,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj": {
-                "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj"
+              "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Domain\\User.Domain.csproj": {
+                "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\User\\User.Domain\\User.Domain.csproj"
               }
             }
           }
