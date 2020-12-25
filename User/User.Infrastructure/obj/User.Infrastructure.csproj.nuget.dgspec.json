@@ -1,0 +1,174 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj",
+        "projectName": "User.Domain",
+        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj",
+        "packagesPath": "C:\\Users\\cefvi\\.nuget\\packages\\",
+        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cefvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "IdentityServer4.AspNetIdentity": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj",
+        "projectName": "User.Infrastructure",
+        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\User.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\cefvi\\.nuget\\packages\\",
+        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cefvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj": {
+                "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\User\\User.Domain\\User.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "IdentityServer4.AccessTokenValidation": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.11.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

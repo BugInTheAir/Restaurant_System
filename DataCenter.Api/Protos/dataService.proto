@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "DataCenter.Api";
+
+package DataCenter;
+
+service UploadService {
+  rpc UploadImage (UploadImageRequest) returns (UploadImageReply);
+}
+
+message UploadImageRequest{
+	string fileExt = 1;
+	bytes imageRaw = 2;
+	string fileName = 3;
+}
+
+message UploadImageReply{
+	string returnUrl =1;
+}
