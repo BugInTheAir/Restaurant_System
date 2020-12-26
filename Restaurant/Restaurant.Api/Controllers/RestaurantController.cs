@@ -226,6 +226,82 @@ namespace Restaurant.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+        [Route("assign-menu")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> AssignMenuToRes([FromBody] RestaurantAndMenuViewModel resMenu)
+        {
+            try
+            {
+                await _mediator.Send(new AssignNewMenuToRestaurantCommand(resMenu.MenuId, resMenu.ResId));
+                return Ok("Assigned");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+        [Route("remove-menu")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> RemoveMenuFromRes([FromBody] RestaurantAndMenuViewModel resMenu)
+        {
+            try
+            {
+                await _mediator.Send(new RemoveMenuFromRestaurantCommand(resMenu.MenuId, resMenu.ResId));
+                return Ok("Removed");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+        [Route("workhour")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [HttpPut]
+        public async Task<ActionResult> UpdateResWorkHour([FromBody] RestaurantWorkTimeChangeViewModel model)
+        {
+            try
+            {
+                await _mediator.Send(new UpdateWorkHourCommand(model.ResId, GetOpenHours(model.OpenHour, model.OpenMinute, model.CloseHour, model.CloseMinute), GetCloseHour(model.OpenHour, model.OpenMinute, model.CloseHour, model.CloseMinute)));
+                return Ok("Updated");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+                throw;
+            }
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+        [Route("address")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [HttpPut]
+        public async Task<ActionResult> UpdateResAddress([FromBody] RestaurantAddressChangeViewModel model)
+        {
+            try
+            {
+                await _mediator.Send(new ChangeRestaurantAddressCommand(model.Street, model.Ward, model.District, model.ResId));
+                return Ok("Changed");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+       
         private string GetOpenHours(int openHour, int openMinute, int closeHour, int closeMinute)
         {
             if (openHour > 24 || openHour < 0 || closeHour > 24 || closeHour < 0 || openMinute >= 60 || closeMinute >= 60

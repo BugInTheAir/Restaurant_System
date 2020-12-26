@@ -40,7 +40,7 @@ namespace Restaurant.Api.Infrastructure.AutofacModules
             });
 
 
-            //builder.RegisterGeneric(typeof(ValidatorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+            builder.RegisterGeneric(typeof(ValidatorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
 
         }
     }
