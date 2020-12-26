@@ -46,7 +46,13 @@ namespace Restaurant.Api.Application.Queries
                 {
                     final = final.Where(x =>
                     {
-                        if (x.TypeName.ToLower().Contains(typeName.ToLower()))
+                        var y = x.TypeName.Where(x =>
+                        {
+                            if (x.ToLower().Contains(typeName.ToLower()))
+                                return true;
+                            return false;
+                        });
+                        if (y != null)
                             return true;
                         return false;
                     }).ToList();
@@ -62,6 +68,9 @@ namespace Restaurant.Api.Application.Queries
                 var existedRes = resResult.Where(x => x.RestaurantName == item.Name).AsParallel().FirstOrDefault();
                 if (existedRes != null)
                 {
+                    var existedType = existedRes.TypeName.Where(x => x.Equals(item.TypeName)).AsParallel().FirstOrDefault();
+                    if (existedType == null)
+                        existedRes.TypeName.Add(item.TypeName);
                     var existedImage = existedRes.ImageUrls.Where(x => x.Equals(item.ImageUrl)).AsParallel().FirstOrDefault();
                     if(existedImage == null)
                         existedRes.ImageUrls.Add(item.ImageUrl);
@@ -99,6 +108,7 @@ namespace Restaurant.Api.Application.Queries
                 }
                 else
                 {
+                    var types = new List<string>();
                     var menus = new List<MenuViewModel>();
                     var foodItems = new List<FoodItemViewModel>();
                     var images = new List<string>();
@@ -115,6 +125,7 @@ namespace Restaurant.Api.Application.Queries
                         MenuName = item.MenuInfo_Name,
                         FoodItems = foodItems
                     });
+                    types.Add(item.TypeName);
                     var res = new RestaurantInformationViewModel
                     {
                         Address = new AddressViewModel
@@ -127,7 +138,7 @@ namespace Restaurant.Api.Application.Queries
                         RestaurantName = item.Name,
                         Seats = item.Seats,
                         Phone = item.Phone,
-                        TypeName = item.TypeName,
+                        TypeName = types,
                         WorkTime = new WorkTimeViewModel
                         {
                             CloseTime = item.WorkTime_CloseTime,
