@@ -31,12 +31,14 @@ namespace Restaurant.Api.Application.ViewModels
     }
     public class MenuViewModel
     {
+        public string MenuId { get; set; }
         public string MenuName { get; set; }
         public string Description { get; set; }
         public List<FoodItemViewModel> FoodItems { get; set; }
     }
     public class FoodItemViewModel
     {
+        public string FoodId { get; set; }
         public string FoodName { get; set; }
         public string ImageUrl { get; set; }
         public string Description { get; set; }

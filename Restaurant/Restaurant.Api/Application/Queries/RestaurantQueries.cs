@@ -16,7 +16,17 @@ namespace Restaurant.Api.Application.Queries
         {
             _connectionString = connectionString;
         }
-      
+
+        public async Task<List<FoodItemViewModel>> GetFoodItems()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var query = @"Select FoodId, FoodInfo_ImageUrl, FoodInfo_FoodName, FoodInfo_Description from dbo.FoodItem";
+                var result = await connection.QueryAsync<dynamic>(query);
+                return ToFoodItemView(result);
+            }
+        }
         public async Task<List<RestaurantInformationViewModel>> GetRestaurant(string typeName, string address)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -152,6 +162,69 @@ namespace Restaurant.Api.Application.Queries
             }
             return resResult;
         }
-
+        public List<FoodItemViewModel> ToFoodItemView(dynamic result)
+        {
+            List<FoodItemViewModel> foodItems = new List<FoodItemViewModel>();
+            foreach(var item in result)
+            {
+                foodItems.Add(new FoodItemViewModel()
+                {
+                    FoodId = item.FoodId,
+                    ImageUrl = item.FoodInfo_ImageUrl,
+                    FoodName = item.FoodInfo_FoodName,
+                    Description = item.FoodInfo_Description
+                });
+            }
+            return foodItems;
+        }
+        public async Task<List<MenuViewModel>> GetMenus()
+        {
+            using(var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var query = @"select  m.MenuId, m.MenuInfo_Des, m.MenuInfo_Name, fi.FoodInfo_FoodName, fi.FoodInfo_Description, fi.FoodInfo_ImageUrl from FoodItem fi
+                              inner join FoodAndMenu fm on  fi.FoodId = fm.FoodId
+                              inner join Menu m on m.MenuId = fm.MenuId";
+                var result = await connection.QueryAsync<dynamic>(query);
+                return ToMenuView(result);
+            }
+        }
+        public List<MenuViewModel> ToMenuView(dynamic result)
+        {
+            List<MenuViewModel> menus = new List<MenuViewModel>();
+            foreach(var item in result)
+            {
+                var existedMenu = menus.Where(x => x.MenuId.Equals(item.MenuId)).FirstOrDefault();
+                if(existedMenu == null)
+                {
+                    List<FoodItemViewModel> foodItems = new List<FoodItemViewModel>();
+                    foodItems.Add(new FoodItemViewModel
+                    {
+                        FoodId = item.FoodId,
+                        ImageUrl = item.FoodInfo_ImageUrl,
+                        FoodName = item.FoodInfo_FoodName,
+                        Description = item.FoodInfo_Description
+                    });
+                    menus.Add(new MenuViewModel
+                    {
+                        Description = item.MenuInfo_Des,
+                        MenuName = item.MenuInfo_Name,
+                        MenuId = item.MenuId,
+                        FoodItems = foodItems
+                    });
+                }
+                else
+                {
+                    existedMenu.FoodItems.Add(new FoodItemViewModel
+                    {
+                        FoodId = item.FoodId,
+                        ImageUrl = item.FoodInfo_ImageUrl,
+                        FoodName = item.FoodInfo_FoodName,
+                        Description = item.FoodInfo_Description
+                    });
+                }
+            }
+            return menus;
+        }
     }
 }

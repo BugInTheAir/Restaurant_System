@@ -51,6 +51,22 @@ namespace Restaurant.Api.Controllers
             }
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+        [Route("menu/all")]
+        [ProducesResponseType(typeof(List<MenuViewModel>),(int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [HttpGet]
+        public async Task<ActionResult> GetMenus()
+        {
+            try
+            {
+                return Ok(await _restaurantQueries.GetMenus());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         ///End of menu section
 
         ///Food section
@@ -92,6 +108,23 @@ namespace Restaurant.Api.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+        [Route("food/all")]
+        [ProducesResponseType(typeof(FoodItemViewModel),(int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [HttpGet]
+        public async Task<ActionResult> GetFoods()
+        {
+            try
+            {
+                return Ok(await _restaurantQueries.GetFoodItems());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         ///End food section
 
