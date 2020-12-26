@@ -64,7 +64,9 @@ namespace Restaurant.Api.Application.Queries
                 var existedRes = resResult.Where(x => x.RestaurantName == item.Name).AsParallel().FirstOrDefault();
                 if (existedRes != null)
                 {
-                    existedRes.ImageUrls.Add(item.ImageUrl);
+                    var existedImage = existedRes.ImageUrls.Where(x => x.Equals(item.ImageUrl)).AsParallel().FirstOrDefault();
+                    if(existedImage == null)
+                        existedRes.ImageUrls.Add(item.ImageUrl);
                     var existedMenu = existedRes.Menus.Where(x => x.MenuName == item.MenuInfo_Name).AsParallel().FirstOrDefault();
                     if (existedMenu != null)
                     {
@@ -84,9 +86,9 @@ namespace Restaurant.Api.Application.Queries
                         var foodItems = new List<FoodItemViewModel>();
                         foodItems.Add(new FoodItemViewModel
                         {
-                            FoodName = item._FoodInfo_FoodName,
-                            Description = item._FoodInfo_Description,
-                            ImageUrl = item._FoodInfo_ImageUrl
+                            FoodName = item.FoodInfo_FoodName,
+                            Description = item.FoodInfo_Description,
+                            ImageUrl = item.FoodInfo_ImageUrl
                         });
                         resResult.Where(x => x.RestaurantName == item.Name).AsParallel().FirstOrDefault().Menus.Add(new MenuViewModel
                         {
