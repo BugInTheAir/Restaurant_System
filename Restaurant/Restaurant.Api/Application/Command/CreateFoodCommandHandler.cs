@@ -25,8 +25,16 @@ namespace Restaurant.Api.Application.Command
                 throw new Exception("Food has been created before");
             else
             {
-                var imageUrl = await UploadFoodImage(request.FoodName, request.ImgExt, request.RawImage);
-                _foodRepository.Add(new FoodItem(imageUrl, request.FoodName, request.Description));
+                var imageName = $"FI-{DateTime.Now.ToShortDateString().Replace("/", "-")}-{Guid.NewGuid().ToString().Split('-')[0]}";
+                var imageUrl = await UploadFoodImage(imageName, request.ImgExt, request.RawImage);
+                try
+                {
+                    _foodRepository.Add(new FoodItem(imageUrl, request.FoodName, request.Description));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             return await _foodRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
         }

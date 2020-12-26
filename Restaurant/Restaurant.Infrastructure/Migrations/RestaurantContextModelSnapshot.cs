@@ -165,6 +165,10 @@ namespace Restaurant.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RestaurantTypeTenantId")
                         .HasColumnType("nvarchar(450)");
 

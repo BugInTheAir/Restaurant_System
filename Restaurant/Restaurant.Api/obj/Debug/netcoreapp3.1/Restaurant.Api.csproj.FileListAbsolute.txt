@@ -67,8 +67,6 @@ C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.csprojAssemblyReference.cache
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.AssemblyInfoInputs.cache
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.AssemblyInfo.cs
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.csproj.CoreCompileInputs.cache
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.RazorTargetAssemblyInfo.cache
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.csproj.CopyComplete
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\staticwebassets\Restaurant.Api.StaticWebAssets.Manifest.cache
@@ -76,3 +74,6 @@ C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.dll
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.pdb
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.genruntimeconfig.cache
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.csproj.CoreCompileInputs.cache
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\obj\Debug\netcoreapp3.1\Restaurant.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Api\bin\Debug\netcoreapp3.1\Autofac.Extensions.DependencyInjection.dll

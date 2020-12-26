@@ -10,8 +10,10 @@ namespace Restaurant.Api.Application.ViewModels
         public string ResId { get; set; }
         public string RestaurantName { get; set; }
         public AddressViewModel Address { get; set; }
+        public string Phone { get; set; }
         public string TypeName { get; set; }
         public int Seats { get; set; }
+        public List<string> ImageUrls { get; set; }
         public WorkTimeViewModel WorkTime { get; set; }
         public List<MenuViewModel> Menus { get; set; }
     }

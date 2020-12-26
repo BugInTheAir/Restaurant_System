@@ -12,7 +12,12 @@ namespace Restaurant.Infrastructure.Repositories
     public class FoodItemRepository : IFoodRepository
     {
         private readonly RestaurantContext _context;
-        public IUnitOfWork UnitOfWork => throw new NotImplementedException();
+        public IUnitOfWork UnitOfWork {
+            get
+            {
+                return this._context;
+            }
+        }
         public FoodItemRepository(RestaurantContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(_context));
@@ -41,7 +46,7 @@ namespace Restaurant.Infrastructure.Repositories
 
         public async Task<FoodItem> FindByNameAsync(string name)
         {
-            var foodItem = await _context.FoodItems.Where(x => x.FoodInfo.Equals(name)).FirstOrDefaultAsync();
+            var foodItem = await _context.FoodItems.Where(x => x.FoodInfo.FoodName.Equals(name)).FirstOrDefaultAsync();
             return foodItem;
         }
     }

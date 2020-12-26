@@ -102,6 +102,7 @@ namespace Restaurant.Infrastructure.Migrations
                     Address_District = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address_Ward = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Seats = table.Column<int>(type: "int", nullable: false),
                     RestaurantTypeTenantId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     WorkTime_OpenTime = table.Column<string>(type: "nvarchar(max)", nullable: true),

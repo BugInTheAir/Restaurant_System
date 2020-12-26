@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using DataCenter.Api.Applications.Commands;
+using DataCenter.Api.Applications.Services;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace DataCenter.Api.Infrastructures.AutofacModules
             //Register commands
             builder.RegisterAssemblyTypes(typeof(UploadImageCommand).GetTypeInfo().Assembly)
                 .AsClosedTypesOf(typeof(IRequestHandler<,>));
-
+            builder.Register(c => new SirvUploader()).As<IUploadImageService>();
             builder.Register<ServiceFactory>(context =>
             {
                 var componentContext = context.Resolve<IComponentContext>();

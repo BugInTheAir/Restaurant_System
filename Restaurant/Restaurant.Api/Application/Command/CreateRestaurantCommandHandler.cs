@@ -23,7 +23,7 @@ namespace Restaurant.Api.Application.Command
             var existedRestaurant =await _restaurantRepository.FindByNameAsync(request.ResName);
             if (existedRestaurant != null)
                 throw new Exception("This restaurant with this name has been existed");
-            var newRestaurant = new Restaurants(request.ResName, request.Street, request.District, request.Ward, request.OpenTime, request.CloseTime, request.Seats, request.Menus, resImagesUrl);
+            var newRestaurant = new Restaurants(request.ResName, request.Street, request.District, request.Ward, request.OpenTime, request.CloseTime,request.Phone, request.Seats, request.Menus, resImagesUrl);
             _restaurantRepository.Add(newRestaurant);
             return await _restaurantRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
         }

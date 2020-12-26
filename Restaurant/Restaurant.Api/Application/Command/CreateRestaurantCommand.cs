@@ -18,7 +18,7 @@ namespace Restaurant.Api.Application.Command
         public int Seats { get; private set; }
         public List<string> Menus { get; private set; }
         
-
+        public string Phone { get; private set; }
         public CreateRestaurantCommand(string resName, string typeId, string street, string ward, string district, string openTime, string closeTime, int seats, List<string> menus)
         {
             ResName = resName;

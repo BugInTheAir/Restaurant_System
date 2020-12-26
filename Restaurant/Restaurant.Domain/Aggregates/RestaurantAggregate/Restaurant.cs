@@ -14,6 +14,7 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
         public string TenantId { get; private set; }
         public Address Address { get; private set; }
         public string Name { get; private set; }
+        public string Phone { get; private set; }
         public int Seats { get; private set; }
         public RestaurantType RestaurantType { get; private set; }
         public WorkTime WorkTime { get; private set; }
@@ -27,7 +28,7 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
             _restaurantAndMenus = new List<RestaurantAndMenu>();
             this.TenantId = "Res-" + DateTime.Now.ToShortDateString() + "-" + Guid.NewGuid().ToString().Split("-")[0];
         }
-        public Restaurants(string name, string street, string district, string ward, string openTime, string closeTime, int seats, List<string> menus, List<ResImage> images):this()
+        public Restaurants(string name, string street, string district, string ward, string openTime, string closeTime,string phone ,int seats, List<string> menus, List<ResImage> images):this()
         {
             if (seats <= 0)
                 throw new Exception("Invalid seats");
@@ -35,6 +36,7 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
             Seats = seats;
             Address = new Address(street, district, ward);
             WorkTime = new WorkTime(openTime, closeTime);
+            Phone = phone;
             var verifiedItems = menus == null || menus.Count == 0 ? throw new Exception("Invalid menus") : menus;
             foreach(var item in verifiedItems)
             {
@@ -46,7 +48,7 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
             {
                 url.Add(x.ImageUrl);
             });
-            AddDomainEvent(new NewRestaurantCreatedDomainEvent(TenantId, Name, Address, WorkTime, verifiedItems, url));
+            AddDomainEvent(new NewRestaurantCreatedDomainEvent(TenantId, Name, Phone,Address, WorkTime, verifiedItems, url));
         }
         //Bussiness
         public void AssignMenuToRestaurant(string menuId)

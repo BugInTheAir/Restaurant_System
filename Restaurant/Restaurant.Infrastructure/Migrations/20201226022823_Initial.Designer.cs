@@ -9,7 +9,7 @@ using Restaurant.Infrastructure;
 namespace Restaurant.Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantContext))]
-    [Migration("20201226012912_Initial")]
+    [Migration("20201226022823_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,6 +166,10 @@ namespace Restaurant.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RestaurantTypeTenantId")
                         .HasColumnType("nvarchar(450)");
