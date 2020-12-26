@@ -129,6 +129,7 @@ namespace Restaurant.Api.Controllers
             }
         }
 
+        [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult> CreateNewRestaurant()
@@ -140,7 +141,7 @@ namespace Restaurant.Api.Controllers
             Request.Form.TryGetValue("Ward", out ward);
             Request.Form.TryGetValue("District", out district);
             Request.Form.TryGetValue("Phone", out phone);
-            Request.Form.TryGetValue("TypeId", out typeNames);
+            Request.Form.TryGetValue("TypeNames", out typeNames);
             Request.Form.TryGetValue("Seats", out seats);
             Request.Form.TryGetValue("OpenHour", out openHour);
             Request.Form.TryGetValue("OpenMinute", out openMinute);

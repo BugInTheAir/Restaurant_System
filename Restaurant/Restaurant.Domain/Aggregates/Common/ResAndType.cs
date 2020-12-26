@@ -14,7 +14,7 @@ namespace Restaurant.Domain.Aggregates.Common
         {
             TenantId = $"RT-{DateTime.Now.ToShortDateString()}-{Guid.NewGuid().ToString().Split('-')[0]}";
         }
-        public ResAndType(string resId, string resTypeId)
+        public ResAndType(string resId, string resTypeId):this()
         {
             ResId = resId;
             ResTypeId = resTypeId;
