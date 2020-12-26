@@ -46,15 +46,15 @@ namespace Restaurant.Api.Application.Queries
                 {
                     final = final.Where(x =>
                     {
-                        var y = x.TypeName.Where(x =>
+                        var y = x.TypeName.Where(z =>
                         {
-                            if (x.ToLower().Contains(typeName.ToLower()))
+                            if (z.ToLower().Contains(typeName.ToLower()))
                                 return true;
                             return false;
-                        });
-                        if (y != null)
-                            return true;
-                        return false;
+                        }).FirstOrDefault();
+                        if (y is null)
+                            return false;
+                        return true;
                     }).ToList();
                 }
                 return final;
