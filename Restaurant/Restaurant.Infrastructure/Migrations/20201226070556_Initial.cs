@@ -48,6 +48,28 @@ namespace Restaurant.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Restaurant",
+                schema: "dbo",
+                columns: table => new
+                {
+                    ResId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Address_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address_District = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address_Ward = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Seats = table.Column<int>(type: "int", nullable: false),
+                    WorkTime_OpenTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WorkTime_CloseTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Restaurant", x => x.ResId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RestaurantType",
                 schema: "dbo",
                 columns: table => new
@@ -90,36 +112,6 @@ namespace Restaurant.Infrastructure.Migrations
                         principalTable: "Menu",
                         principalColumn: "MenuId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Restaurant",
-                schema: "dbo",
-                columns: table => new
-                {
-                    ResId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Address_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_District = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_Ward = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Seats = table.Column<int>(type: "int", nullable: false),
-                    RestaurantTypeTenantId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    WorkTime_OpenTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WorkTime_CloseTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Restaurant", x => x.ResId);
-                    table.ForeignKey(
-                        name: "FK_Restaurant_RestaurantType_RestaurantTypeTenantId",
-                        column: x => x.RestaurantTypeTenantId,
-                        principalSchema: "dbo",
-                        principalTable: "RestaurantType",
-                        principalColumn: "ResTypeId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,6 +166,36 @@ namespace Restaurant.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ResAndType",
+                schema: "dbo",
+                columns: table => new
+                {
+                    ResAndTypeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ResId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ResTypeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ResAndType", x => new { x.ResAndTypeId, x.ResId, x.ResTypeId });
+                    table.ForeignKey(
+                        name: "FK_ResAndType_Restaurant_ResId",
+                        column: x => x.ResId,
+                        principalSchema: "dbo",
+                        principalTable: "Restaurant",
+                        principalColumn: "ResId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ResAndType_RestaurantType_ResTypeId",
+                        column: x => x.ResTypeId,
+                        principalSchema: "dbo",
+                        principalTable: "RestaurantType",
+                        principalColumn: "ResTypeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_FoodAndMenu_FoodId",
                 schema: "dbo",
@@ -193,6 +215,18 @@ namespace Restaurant.Infrastructure.Migrations
                 column: "ResId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ResAndType_ResId",
+                schema: "dbo",
+                table: "ResAndType",
+                column: "ResId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ResAndType_ResTypeId",
+                schema: "dbo",
+                table: "ResAndType",
+                column: "ResTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ResImages_RestaurantsTenantId",
                 schema: "dbo",
                 table: "ResImages",
@@ -204,12 +238,6 @@ namespace Restaurant.Infrastructure.Migrations
                 table: "Restaurant",
                 column: "Name",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Restaurant_RestaurantTypeTenantId",
-                schema: "dbo",
-                table: "Restaurant",
-                column: "RestaurantTypeTenantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RestaurantType_TypeName",
@@ -230,6 +258,10 @@ namespace Restaurant.Infrastructure.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
+                name: "ResAndType",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "ResImages",
                 schema: "dbo");
 
@@ -242,11 +274,11 @@ namespace Restaurant.Infrastructure.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Restaurant",
+                name: "RestaurantType",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "RestaurantType",
+                name: "Restaurant",
                 schema: "dbo");
 
             migrationBuilder.DropSequence(

@@ -24,6 +24,7 @@ namespace Restaurant.Api.Infrastructure.AutofacModules
             builder.RegisterType<RestaurantRepository>().As<IRestaurantRepository>().InstancePerLifetimeScope();
             builder.RegisterType<MenuRepository>().As<IMenuRepository>().InstancePerLifetimeScope();
             builder.RegisterType<FoodItemRepository>().As<IFoodRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ResTypeRepository>().As<IResTypeRepository>().InstancePerLifetimeScope();
         }
     }
 }

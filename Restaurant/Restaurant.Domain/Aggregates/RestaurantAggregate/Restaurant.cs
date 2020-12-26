@@ -16,19 +16,21 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
         public string Name { get; private set; }
         public string Phone { get; private set; }
         public int Seats { get; private set; }
-        public RestaurantType RestaurantType { get; private set; }
         public WorkTime WorkTime { get; private set; }
         private readonly List<ResImage> _resImages;
+        private readonly List<ResAndType> _resAndTypes;
+        public IEnumerable<ResAndType> ResAndTypes => _resAndTypes; 
         public IEnumerable<ResImage> ResImages => _resImages;
         private readonly List<RestaurantAndMenu> _restaurantAndMenus;
         public IEnumerable<RestaurantAndMenu> RestaurantAndMenus => _restaurantAndMenus;
         protected Restaurants()
         {
             _resImages = new List<ResImage>();
+            _resAndTypes = new List<ResAndType>();
             _restaurantAndMenus = new List<RestaurantAndMenu>();
             this.TenantId = "Res-" + DateTime.Now.ToShortDateString() + "-" + Guid.NewGuid().ToString().Split("-")[0];
         }
-        public Restaurants(string name, string street, string district, string ward, string openTime, string closeTime,string phone ,int seats, List<string> menus, List<ResImage> images):this()
+        public Restaurants(string name, string street, string district, string ward, string openTime, string closeTime,string phone ,int seats, List<string> resAndType,List<string> menus, List<ResImage> images):this()
         {
             if (seats <= 0)
                 throw new Exception("Invalid seats");
@@ -43,6 +45,10 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
                 _restaurantAndMenus.Add(new RestaurantAndMenu(this.TenantId, item));
             }
             _resImages = images;
+            foreach(var item in resAndType)
+            {
+                _resAndTypes.Add(new ResAndType(this.TenantId, item));
+            }
             List<string> url = new List<string>();
             images.ForEach(x =>
             {

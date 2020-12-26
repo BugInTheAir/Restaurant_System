@@ -25,6 +25,7 @@ namespace Restaurant.Infrastructure
         public DbSet<FoodAndMenu> FoodAndMenus { get; set; }
         public DbSet<FoodItem> FoodItems{ get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<ResAndType> ResAndTypes { get; set; }
         public DbSet<RestaurantType> RestaurantTypes { get; set; }
         private readonly IMediator _mediator;
         public RestaurantContext(DbContextOptions<RestaurantContext> options, IMediator mediator) : base(options)
@@ -40,6 +41,7 @@ namespace Restaurant.Infrastructure
             modelBuilder.ApplyConfiguration(new MenuEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new FoodAndMenuEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new RestaurantImageEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ResAndTypeEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)

@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Grpc.Net.Client;
+using MediatR;
+using Restaurant.Domain.Aggregates.Common;
 using Restaurant.Domain.Aggregates.RestaurantAggregate;
 using System;
 using System.Collections.Generic;
@@ -11,21 +13,63 @@ namespace Restaurant.Api.Application.Command
     public class CreateRestaurantCommandHandler : IRequestHandler<CreateRestaurantCommand, bool>
     {
         private readonly IRestaurantRepository _restaurantRepository;
+        private readonly IResTypeRepository _resTypeRepository;
 
-        public CreateRestaurantCommandHandler(IRestaurantRepository restaurantRepository)
+        public CreateRestaurantCommandHandler(IRestaurantRepository restaurantRepository, IResTypeRepository resTypeRepository)
         {
             _restaurantRepository = restaurantRepository;
+            _resTypeRepository = resTypeRepository;
         }
 
         public async Task<bool> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
         {
-            List<ResImage> resImagesUrl = null;
-            var existedRestaurant =await _restaurantRepository.FindByNameAsync(request.ResName);
+            var existedRestaurant = await _restaurantRepository.FindByNameAsync(request.ResName);
             if (existedRestaurant != null)
                 throw new Exception("This restaurant with this name has been existed");
-            var newRestaurant = new Restaurants(request.ResName, request.Street, request.District, request.Ward, request.OpenTime, request.CloseTime,request.Phone, request.Seats, request.Menus, resImagesUrl);
+            List<ResImage> resImagesUrl = new List<ResImage>();
+            
+            List<string> typeId = new List<string>();
+            for(int i = 0; i < request.TypeNames.Count; i++)
+            {
+                var resType =await _resTypeRepository.FindByNameAsync(request.TypeNames[i]);
+                if(resType == null)
+                {
+                    var newType = new RestaurantType(request.TypeNames[i]);
+                    _resTypeRepository.Add(newType);
+                    typeId.Add(newType.TenantId);
+                }
+                else
+                {
+                    typeId.Add(resType.TenantId);
+                }
+            }
+            for(int i = 0; i < request.Images.Count; i++)
+            {
+                var imageName = $"RI-{DateTime.Now.ToShortDateString().Replace("/", "-")}-{Guid.NewGuid().ToString().Split('-')[0]}";
+                var url = await UploadFoodImage(imageName, request.Images[i].FileExt, request.Images[i].RawImage);
+                resImagesUrl.Add(new ResImage(url, request.Images[i].FileExt));
+            }
+           
+            var newRestaurant = new Restaurants(request.ResName, request.Street, request.District, request.Ward, request.OpenTime, request.CloseTime,request.Phone, request.Seats, typeId, request.Menus, resImagesUrl);
             _restaurantRepository.Add(newRestaurant);
             return await _restaurantRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
+        }
+        private async Task<string> UploadFoodImage(string imgName, string imgExt, byte[] rawImg)
+        {
+            using var channel = GrpcChannel.ForAddress("https://localhost:5008");
+            var client = new UploadService.UploadServiceClient(channel);
+            try
+            {
+                var reply = await client.UploadImageAsync(new UploadImageRequest { FileExt = imgExt, FileName = imgName, ImageRaw = Google.Protobuf.ByteString.CopyFrom(rawImg) });
+                return reply.ReturnUrl;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
         }
     }
 }

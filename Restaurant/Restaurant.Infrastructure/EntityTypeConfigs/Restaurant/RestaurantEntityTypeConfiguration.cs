@@ -27,16 +27,16 @@ namespace Restaurant.Infrastructure.EntityTypeConfigs
             builder.Property(r => r.TenantId).IsRequired().HasColumnName("ResId");
             builder.HasIndex(x => x.Name).IsUnique();
             builder.Property(x => x.Phone).IsRequired();
-            builder.HasOne(x => x.RestaurantType).WithMany().OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(r => r.ResImages).WithOne().OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(r => r.RestaurantAndMenus).WithOne().HasForeignKey(x => x.ResId).OnDelete(DeleteBehavior.Cascade);
-
+            builder.HasMany(r => r.ResAndTypes).WithOne().HasForeignKey(rt => rt.ResId).OnDelete(DeleteBehavior.Cascade);
             var imagesNavigation = builder.Metadata.FindNavigation(nameof(Restaurants.ResImages));
             imagesNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
             var navigation = builder.Metadata.FindNavigation(nameof(Restaurants.RestaurantAndMenus));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-
+            var resTypeNavigation = builder.Metadata.FindNavigation(nameof(Restaurants.ResAndTypes));
+            resTypeNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

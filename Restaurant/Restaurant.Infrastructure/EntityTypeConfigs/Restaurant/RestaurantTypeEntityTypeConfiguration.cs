@@ -18,6 +18,7 @@ namespace Restaurant.Infrastructure.EntityTypeConfigs
             builder.HasIndex(x => x.TypeName).IsUnique();
             builder.Property(x => x.TypeName).IsRequired();
             builder.Property(x => x.TenantId).IsRequired().HasColumnName("ResTypeId").IsRequired();
+            builder.HasMany(x => x.ResAndTypes).WithOne().HasForeignKey(t => t.ResTypeId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

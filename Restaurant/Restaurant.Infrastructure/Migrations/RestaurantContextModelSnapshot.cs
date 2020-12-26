@@ -47,6 +47,32 @@ namespace Restaurant.Infrastructure.Migrations
                     b.ToTable("FoodAndMenu", "dbo");
                 });
 
+            modelBuilder.Entity("Restaurant.Domain.Aggregates.Common.ResAndType", b =>
+                {
+                    b.Property<string>("TenantId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("ResAndTypeId");
+
+                    b.Property<string>("ResId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ResTypeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.HasKey("TenantId", "ResId", "ResTypeId");
+
+                    b.HasIndex("ResId");
+
+                    b.HasIndex("ResTypeId");
+
+                    b.ToTable("ResAndType", "dbo");
+                });
+
             modelBuilder.Entity("Restaurant.Domain.Aggregates.Common.RestaurantAndMenu", b =>
                 {
                     b.Property<string>("MenuId")
@@ -169,9 +195,6 @@ namespace Restaurant.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RestaurantTypeTenantId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("Seats")
                         .HasColumnType("int");
 
@@ -179,8 +202,6 @@ namespace Restaurant.Infrastructure.Migrations
 
                     b.HasIndex("Name")
                         .IsUnique();
-
-                    b.HasIndex("RestaurantTypeTenantId");
 
                     b.ToTable("Restaurant", "dbo");
                 });
@@ -196,6 +217,21 @@ namespace Restaurant.Infrastructure.Migrations
                     b.HasOne("Restaurant.Domain.Aggregates.MenuAggregate.Menu", null)
                         .WithMany("FoodAndMenus")
                         .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Restaurant.Domain.Aggregates.Common.ResAndType", b =>
+                {
+                    b.HasOne("Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurants", null)
+                        .WithMany("ResAndTypes")
+                        .HasForeignKey("ResId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Restaurant.Domain.Aggregates.RestaurantAggregate.RestaurantType", null)
+                        .WithMany("ResAndTypes")
+                        .HasForeignKey("ResTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -276,11 +312,6 @@ namespace Restaurant.Infrastructure.Migrations
 
             modelBuilder.Entity("Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurants", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Aggregates.RestaurantAggregate.RestaurantType", "RestaurantType")
-                        .WithMany()
-                        .HasForeignKey("RestaurantTypeTenantId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.OwnsOne("Restaurant.Domain.Aggregates.RestaurantAggregate.Address", "Address", b1 =>
                         {
                             b1.Property<string>("RestaurantsTenantId")
@@ -324,8 +355,6 @@ namespace Restaurant.Infrastructure.Migrations
 
                     b.Navigation("Address");
 
-                    b.Navigation("RestaurantType");
-
                     b.Navigation("WorkTime");
                 });
 
@@ -341,8 +370,15 @@ namespace Restaurant.Infrastructure.Migrations
                     b.Navigation("RestaurantAndMenus");
                 });
 
+            modelBuilder.Entity("Restaurant.Domain.Aggregates.RestaurantAggregate.RestaurantType", b =>
+                {
+                    b.Navigation("ResAndTypes");
+                });
+
             modelBuilder.Entity("Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurants", b =>
                 {
+                    b.Navigation("ResAndTypes");
+
                     b.Navigation("ResImages");
 
                     b.Navigation("RestaurantAndMenus");

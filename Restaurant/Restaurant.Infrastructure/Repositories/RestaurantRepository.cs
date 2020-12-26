@@ -36,7 +36,7 @@ namespace Restaurant.Infrastructure.Repositories
 
         public async Task<Restaurants> FindByIdAsync(string id)
         {
-            var res = await _context.Restaurants.Include(m => new { m.RestaurantAndMenus, m.RestaurantType }).Where(m => m.TenantId == id).FirstOrDefaultAsync();
+            var res = await _context.Restaurants.Include(m =>  m.RestaurantAndMenus).Include(m => m.ResAndTypes).Where(m => m.TenantId == id).FirstOrDefaultAsync();
             return res;
         }
 
@@ -49,7 +49,7 @@ namespace Restaurant.Infrastructure.Repositories
 
         public async Task<Restaurants> FindByNameAsync(string name)
         {
-            var res = await _context.Restaurants.Include(m => new { m.RestaurantAndMenus, m.RestaurantType }).Where(m => m.Name == name).FirstOrDefaultAsync();
+            var res = await _context.Restaurants.Include(m => m.RestaurantAndMenus).Include(m => m.ResAndTypes).Where(m => m.Name == name).FirstOrDefaultAsync();
             return res;
         }
     }
