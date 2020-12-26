@@ -28,6 +28,29 @@ namespace Restaurant.Api.Controllers
             _restaurantQueries = restaurantQueries;
             _mediator = mediator;
         }
+
+        ///Menu section
+        [Route("menu")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [HttpPost]
+        public async Task<ActionResult> CreateMenu([FromBody] MenuRegistrationDTO dto)
+        {
+            try
+            {
+                var result = await _mediator.Send(new CreateMenuCommand(dto.Name, dto.Description, dto.FoodItems));
+                if (result)
+                    return Ok();
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        ///End of menu section
+
+        ///Food section
         [Route("food")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -66,6 +89,9 @@ namespace Restaurant.Api.Controllers
             }
 
         }
+        ///End food section
+        
+        ///Restaurant section
         [Route("all")]
         [ProducesResponseType(typeof(List<RestaurantInformationViewModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -81,6 +107,7 @@ namespace Restaurant.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
         [ProducesResponseType(typeof(List<RestaurantInformationViewModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [HttpGet("{typeId}/{street}")]
@@ -100,6 +127,6 @@ namespace Restaurant.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        //End of restaurant section
     }
 }

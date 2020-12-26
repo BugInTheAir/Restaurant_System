@@ -6,5 +6,6 @@ namespace Restaurant.Infrastructure.ExternalServices
 {
     public interface IEmailService
     {
+        
     }
 }

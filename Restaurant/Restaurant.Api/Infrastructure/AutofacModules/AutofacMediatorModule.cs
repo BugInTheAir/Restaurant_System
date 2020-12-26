@@ -1,7 +1,9 @@
 ﻿using Autofac;
+using FluentValidation;
 using MediatR;
 using Restaurant.Api.Application.Behaviors;
 using Restaurant.Api.Application.Command;
+using Restaurant.Api.Application.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +26,11 @@ namespace Restaurant.Api.Infrastructure.AutofacModules
             //builder.RegisterAssemblyTypes(typeof(ValidateEmailDomainEventHandler).GetTypeInfo().Assembly)
             //   .AsClosedTypesOf(typeof(INotificationHandler<>));
 
-            ////Register Validators
-            //builder
-            //    .RegisterAssemblyTypes(typeof(UserRegisterValidator).GetTypeInfo().Assembly)
-            //    .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
-            //    .AsImplementedInterfaces();
+            //Register Validators
+            builder
+                .RegisterAssemblyTypes(typeof(CreateFoodCommandValidator).GetTypeInfo().Assembly)
+                .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
+                .AsImplementedInterfaces();
 
 
             builder.Register<ServiceFactory>(context =>

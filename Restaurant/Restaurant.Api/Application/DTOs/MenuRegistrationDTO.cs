@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Api.Application.DTOs
 {
-    public class FoodUploadDTO
+    public class MenuRegistrationDTO
     {
-        public string FoodName { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
+        public List<string> FoodItems { get; set; }
     }
 }
