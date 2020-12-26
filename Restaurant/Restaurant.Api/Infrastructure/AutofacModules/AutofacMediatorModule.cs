@@ -4,6 +4,7 @@ using MediatR;
 using Restaurant.Api.Application.Behaviors;
 using Restaurant.Api.Application.Command;
 using Restaurant.Api.Application.Validators;
+using Restaurant.Domain.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,9 @@ namespace Restaurant.Api.Infrastructure.AutofacModules
             builder.RegisterAssemblyTypes(typeof(CreateFoodCommand).GetTypeInfo().Assembly)
                 .AsClosedTypesOf(typeof(IRequestHandler<,>));
 
-            ////Register domain events
-            //builder.RegisterAssemblyTypes(typeof(ValidateEmailDomainEventHandler).GetTypeInfo().Assembly)
-            //   .AsClosedTypesOf(typeof(INotificationHandler<>));
+            //Register domain events
+            builder.RegisterAssemblyTypes(typeof(NewRestaurantCreatedDomainEvent).GetTypeInfo().Assembly)
+               .AsClosedTypesOf(typeof(INotificationHandler<>));
 
             //Register Validators
             builder

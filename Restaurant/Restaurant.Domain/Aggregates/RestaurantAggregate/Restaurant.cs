@@ -61,7 +61,7 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
         {
             var verifiedMenu = menuId ?? throw new ArgumentNullException("Invalid menu id");
             _restaurantAndMenus.Add(new RestaurantAndMenu(this.TenantId, verifiedMenu));
-            AddDomainEvent(new NewMenuAddedInRestaurant(Name, this.Address, menuId));
+            AddDomainEvent(new NewMenuAddedInRestaurantDomainEvent(Name, this.Address, menuId));
         }
         public void RemoveMenuFromRestaurant(string menuId)
         {
@@ -71,7 +71,7 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
             if (_restaurantAndMenus.Count == 1)
                 throw new Exception("At least one menu in restaurant");
             _restaurantAndMenus.Remove(existedMenu);
-            AddDomainEvent(new MenuRemovedFromRestaurant(Name, Address, menuId));
+            AddDomainEvent(new MenuRemovedFromRestaurantDomainEvent(Name, Address, menuId));
         }
         public void UpdateAddress(string street, string district, string ward)
         {

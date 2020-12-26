@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Restaurant.Domain.Events
 {
-    public class NewMenuAddedInRestaurant : INotification
+    public class NewMenuAddedInRestaurantDomainEvent : INotification
     {
         public string RestaurantName { get; private set; }
         public Address Address { get; private set; }
         public string MenuItem { get; private set; }
 
-        public NewMenuAddedInRestaurant(string restaurantName, Address address, string menuItem)
+        public NewMenuAddedInRestaurantDomainEvent(string restaurantName, Address address, string menuItem)
         {
             RestaurantName = restaurantName;
             Address = address;
