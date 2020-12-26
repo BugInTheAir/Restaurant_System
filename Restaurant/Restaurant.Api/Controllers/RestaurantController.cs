@@ -132,7 +132,7 @@ namespace Restaurant.Api.Controllers
             }
         }
 
-        //[Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
