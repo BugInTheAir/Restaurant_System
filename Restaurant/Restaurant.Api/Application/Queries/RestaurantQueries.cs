@@ -16,10 +16,8 @@ namespace Restaurant.Api.Application.Queries
         {
             _connectionString = connectionString;
         }
-        //Database query
-        //select r.Name, r.Address_Ward, r.Address_Street,r.RestaurantTypeTenantId,  r.Address_District, r.Seats, r.WorkTime_OpenTime, r.WorkTime_OpenTime, temp.FoodInfo_Description, temp.FoodInfo_FoodName, temp.FoodInfo_ImageUrl, temp.MenuInfo_Des, temp.MenuInfo_Name from Restaurant as r inner join ResAndMenu as rm On rm.ResId = r.Id inner join (  select m.MenuId, m.MenuInfo_Des, m.MenuInfo_Name, fi.FoodInfo_ImageUrl, fi.FoodInfo_FoodName, fi.FoodInfo_Description from Menu as m  inner join FoodAndMenu as fm on fm.MenuId = m.Id inner join FoodItem as fi on fm.FoodId = fi.FoodId)as temp on temp.MenuId = rm.MenuId 
-        //where Address_Street like '%test%' and Address_Street like '%test2%' and Address_District like '%test%' 
-        public async Task<List<RestaurantInformationViewModel>> GetRestaurant(string typeId, string address)
+      
+        public async Task<List<RestaurantInformationViewModel>> GetRestaurant(string typeName, string address)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -33,27 +31,27 @@ namespace Restaurant.Api.Application.Queries
                               inner join FoodAndMenu fm on fm.MenuId = m.MenuId
                               inner join FoodItem f on f.FoodId = fm.FoodId";
                 var result = await connection.QueryAsync<dynamic>(query);
+                var final = ToRestaurantInformationView(result);
                 if (address != null)
                 {
-                    result = result.Where(x =>
+                    final = final.Where(x =>
                     {
-                        string addr = $"{x.Address_Street}, {x.Address_Ward}, {x.Address_District}";
-                        if (addr.Contains(address))
+                        string addr = $"{x.Address.Street}, {x.Address.Ward}, {x.Address.District}";
+                        if (addr.ToLower().Contains(address.ToLower()))
                             return true;
                         return false;
-                    });
+                    }).ToList();
                 }
-                if (typeId != null)
+                if (typeName != null)
                 {
-                    result = result.Where(x =>
+                    final = final.Where(x =>
                     {
-                        string id = x.RestaurantTypeTenantId;
-                        if (id == typeId)
+                        if (x.TypeName.ToLower().Contains(typeName.ToLower()))
                             return true;
                         return false;
-                    });
+                    }).ToList();
                 }
-                return ToRestaurantInformationView(result);
+                return final;
             }
         }
         public List<RestaurantInformationViewModel> ToRestaurantInformationView(dynamic result)

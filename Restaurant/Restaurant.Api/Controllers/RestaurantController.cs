@@ -112,18 +112,23 @@ namespace Restaurant.Api.Controllers
             }
         }
 
+        [Route("search")]
         [ProducesResponseType(typeof(List<RestaurantInformationViewModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [HttpGet("{typeId}/{street}")]
-        public async Task<ActionResult> GetAllRestaurant(string typeId, string street)
+        [HttpPost]
+        public async Task<ActionResult> GetAllRestaurant([FromBody] RestaurantTypeAndStreetSearchViewModel model)
         {
             try
             {
-                if (street == null)
-                    return Ok(await _restaurantQueries.GetRestaurant(typeId, null));
+                if (model.Street == null)
+                    return Ok(await _restaurantQueries.GetRestaurant(model.TypeName, null));
+                else if(model.TypeName == null)
+                {
+                    return Ok(await _restaurantQueries.GetRestaurant(null, model.Street));
+                }
                 else
                 {
-                    return Ok(await _restaurantQueries.GetRestaurant(typeId, street));
+                    return Ok(await _restaurantQueries.GetRestaurant(model.TypeName, model.Street));
                 }
             }
             catch (Exception ex)
@@ -193,14 +198,48 @@ namespace Restaurant.Api.Controllers
             if (openHour > 24 || openHour < 0 || closeHour > 24 || closeHour < 0 || openMinute >= 60 || closeMinute >= 60
                 || openMinute < 0 || closeMinute < 0)
                 throw new Exception("Invalid hour");
-            return openHour.ToString() + ":" + openMinute.ToString();
+            string tempHour, tempMinute;
+            if(openHour < 10)
+            {
+                tempHour = "0" + openHour.ToString();
+            }
+            else
+            {
+                tempHour = openHour.ToString();
+            }
+            if(openMinute < 10)
+            {
+                tempMinute = "0" + openMinute.ToString();
+            }
+            else
+            {
+                tempMinute = openMinute.ToString();
+            }
+            return tempHour + ":" + tempMinute;
         }
         private string GetCloseHour(int openHour, int openMinute, int closeHour, int closeMinute)
         {
             if (openHour > 24 || openHour < 0 || closeHour > 24 || closeHour < 0 || openMinute >= 60 || closeMinute >= 60
                 || openMinute < 0 || closeMinute < 0)
                 throw new Exception("Invalid hour");
-            return closeHour.ToString() + ":" + closeMinute.ToString();
+            string tempHour, tempMinute;
+            if (openHour < 10)
+            {
+                tempHour = "0" + openHour.ToString();
+            }
+            else
+            {
+                tempHour = openHour.ToString();
+            }
+            if (openMinute < 10)
+            {
+                tempMinute = "0" + openMinute.ToString();
+            }
+            else
+            {
+                tempMinute = openMinute.ToString();
+            }
+            return tempHour + ":" + tempMinute;
         }
         //End of restaurant section
     }
