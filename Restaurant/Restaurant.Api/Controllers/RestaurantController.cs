@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
@@ -30,6 +31,7 @@ namespace Restaurant.Api.Controllers
         }
 
         ///Menu section
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
         [Route("menu")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -52,6 +54,7 @@ namespace Restaurant.Api.Controllers
         ///End of menu section
 
         ///Food section
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
         [Route("food")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -129,6 +132,7 @@ namespace Restaurant.Api.Controllers
             }
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

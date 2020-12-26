@@ -47,7 +47,7 @@ namespace Restaurant.Api
             services.AddControllers();
             services.AddAuthentication("Bearer").AddIdentityServerAuthentication("Bearer", options =>
             {
-                options.Authority = "http://localhost:20000";
+                options.Authority = "http://25.81.40.169:5000";
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
             });

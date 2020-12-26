@@ -24,21 +24,29 @@ namespace Restaurant.Api.Application.Queries
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                List<Object> parameters = new List<Object>();
-                var query = @"select  r.ResId, r.Name, r.Phone, r.Address_Ward, ri.ImageUrl,r.RestaurantTypeTenantId, r.Address_Street, r.Address_District, r.Seats, r.WorkTime_CloseTime, r.WorkTime_OpenTime, temp.FoodInfo_Description, temp.FoodInfo_FoodName, temp.FoodInfo_ImageUrl, temp.MenuInfo_Des, temp.MenuInfo_Name from Restaurant as r inner join ResAndMenu as rm On rm.ResId = r.Id inner join (  select m.MenuId, m.MenuInfo_Des, m.MenuInfo_Name, fi.FoodInfo_ImageUrl, fi.FoodInfo_FoodName, fi.FoodInfo_Description from Menu as m  inner join FoodAndMenu as fm on fm.MenuId = m.Id inner join FoodItem as fi on fm.FoodId = fi.FoodId)as temp on temp.MenuId = rm.MenuId inner join dbo.ResImages as ri on r.ResId = ri.RestaurantsTenantId";
-                var result = (await connection.QueryAsync<dynamic>(query, parameters));
-                if (address != null || address != " ")
+                var query = @"select r.ResId, r.Name, r.Phone, m.MenuInfo_Name, m.MenuInfo_Des, r.Address_District, r.Address_Street, r.Address_Ward, r.Seats, r.WorkTime_OpenTime, r.WorkTime_CloseTime, t.TypeName, ri.ImageUrl, f.FoodInfo_FoodName, f.FoodInfo_Description, f.FoodInfo_ImageUrl from Restaurant r
+                              inner join ResAndMenu rm on r.ResId = rm.ResId
+                              inner join Menu m on rm.MenuId = m.MenuId
+                              inner join ResAndType rt on rt.ResId = r.ResId
+                              inner join RestaurantType t on t.ResTypeId = rt.ResTypeId
+                              inner join ResImages ri on ri.RestaurantsTenantId = r.ResId
+                              inner join FoodAndMenu fm on fm.MenuId = m.MenuId
+                              inner join FoodItem f on f.FoodId = fm.FoodId";
+                var result = await connection.QueryAsync<dynamic>(query);
+                if (address != null)
                 {
-                    result = result.Where(x => {
+                    result = result.Where(x =>
+                    {
                         string addr = $"{x.Address_Street}, {x.Address_Ward}, {x.Address_District}";
                         if (addr.Contains(address))
                             return true;
                         return false;
                     });
                 }
-                if(typeId != null)
+                if (typeId != null)
                 {
-                    result = result.Where(x => {
+                    result = result.Where(x =>
+                    {
                         string id = x.RestaurantTypeTenantId;
                         if (id == typeId)
                             return true;
@@ -51,36 +59,39 @@ namespace Restaurant.Api.Application.Queries
         public List<RestaurantInformationViewModel> ToRestaurantInformationView(dynamic result)
         {
             List<RestaurantInformationViewModel> resResult = new List<RestaurantInformationViewModel>();
-            foreach(var item in result)
+            foreach (var item in result)
             {
-                var existedRes = resResult.Where(x => x.RestaurantName == result.Name).AsParallel().FirstOrDefault();
-                if(existedRes != null)
+                var existedRes = resResult.Where(x => x.RestaurantName == item.Name).AsParallel().FirstOrDefault();
+                if (existedRes != null)
                 {
-                    existedRes.ImageUrls.Add(result.ImageUrl);
-                    var existedMenu = existedRes.Menus.Where(x => x.MenuName == result.MenuInfo_Name).AsParallel().FirstOrDefault();
-                    if(existedMenu != null)
+                    existedRes.ImageUrls.Add(item.ImageUrl);
+                    var existedMenu = existedRes.Menus.Where(x => x.MenuName == item.MenuInfo_Name).AsParallel().FirstOrDefault();
+                    if (existedMenu != null)
                     {
-                        resResult.Where(x => x.RestaurantName == result.Name).AsParallel().FirstOrDefault().Menus.Where(x => x.MenuName == result.MenuInfo_Name).AsParallel().FirstOrDefault().FoodItems.Add(new FoodItemViewModel
+                        var existedFood = existedMenu.FoodItems.Where(x => x.FoodName == item.FoodInfo_FoodName).AsParallel().FirstOrDefault();
+                        if(existedFood == null)
                         {
-                            Description = result.FoodInfo_Description,
-                            FoodName = result.FoodInfo_FoodName,
-                            ImageUrl = result.FoodInfo_ImageUrl
-                        });
-                        
+                            resResult.Where(x => x.RestaurantName == item.Name).AsParallel().FirstOrDefault().Menus.Where(x => x.MenuName == item.MenuInfo_Name).AsParallel().FirstOrDefault().FoodItems.Add(new FoodItemViewModel
+                            {
+                                Description = item.FoodInfo_Description,
+                                FoodName = item.FoodInfo_FoodName,
+                                ImageUrl = item.FoodInfo_ImageUrl
+                            });
+                        }
                     }
                     else
                     {
                         var foodItems = new List<FoodItemViewModel>();
                         foodItems.Add(new FoodItemViewModel
                         {
-                            FoodName = result._FoodInfo_FoodName,
-                            Description = result._FoodInfo_Description,
-                            ImageUrl = result._FoodInfo_ImageUrl
+                            FoodName = item._FoodInfo_FoodName,
+                            Description = item._FoodInfo_Description,
+                            ImageUrl = item._FoodInfo_ImageUrl
                         });
-                        resResult.Where(x => x.RestaurantName == result.Name).AsParallel().FirstOrDefault().Menus.Add(new MenuViewModel
+                        resResult.Where(x => x.RestaurantName == item.Name).AsParallel().FirstOrDefault().Menus.Add(new MenuViewModel
                         {
-                            MenuName = result.MenuInfo_Name,
-                            Description = result.MenuInfo_Des,
+                            MenuName = item.MenuInfo_Name,
+                            Description = item.MenuInfo_Des,
                             FoodItems = foodItems
                         });
 
@@ -91,39 +102,41 @@ namespace Restaurant.Api.Application.Queries
                     var menus = new List<MenuViewModel>();
                     var foodItems = new List<FoodItemViewModel>();
                     var images = new List<string>();
-                    images.Add(result.ImageUrl);
+                    images.Add(item.ImageUrl);
                     foodItems.Add(new FoodItemViewModel
                     {
-                        FoodName = result.FoodInfo_FoodName,
-                        Description = result.FoodInfo_Description,
-                        ImageUrl = result.FoodInfo_ImageUrl
+                        FoodName = item.FoodInfo_FoodName,
+                        Description = item.FoodInfo_Description,
+                        ImageUrl = item.FoodInfo_ImageUrl
                     });
                     menus.Add(new MenuViewModel
                     {
-                        Description = result.MenuInfo.Des,
-                        MenuName = result.MenuInfo.Name,
+                        Description = item.MenuInfo_Des,
+                        MenuName = item.MenuInfo_Name,
                         FoodItems = foodItems
                     });
                     var res = new RestaurantInformationViewModel
                     {
                         Address = new AddressViewModel
                         {
-                            District = result.Address_District,
-                            Street = result.Address_Street,
-                            Ward = result.Address_Ward
+                            District = item.Address_District,
+                            Street = item.Address_Street,
+                            Ward = item.Address_Ward
                         },
-                        ResId = result.ResId,
-                        RestaurantName = result.Name,
-                        Seats = result.Seats,
-                        Phone = result.Phone,
+                        ResId = item.ResId,
+                        RestaurantName = item.Name,
+                        Seats = item.Seats,
+                        Phone = item.Phone,
+                        TypeName = item.TypeName,
                         WorkTime = new WorkTimeViewModel
                         {
-                            CloseTime = result.WorkTime_CloseTime,
-                            OpenTime = result.WorkTime_OpenTime
+                            CloseTime = item.WorkTime_CloseTime,
+                            OpenTime = item.WorkTime_OpenTime
                         },
                         Menus = menus,
                         ImageUrls = images
                     };
+                    resResult.Add(res);
                 }
             }
             return resResult;

@@ -3,12 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\Utils\**" />
+    <Content Remove="Application\Utils\**" />
+    <EmbeddedResource Remove="Application\Utils\**" />
+    <None Remove="Application\Utils\**" />
+  </ItemGroup>
 	<ItemGroup>
 		<Protobuf Include="Protos\dataService.proto" GrpcServices="Client" />
 	</ItemGroup>
-  <ItemGroup>
-    <Folder Include="Application\Utils\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.1.0" />
@@ -36,6 +40,10 @@
     <None Update="Protos\dataService.proto">
       <GrpcServices>Server</GrpcServices>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\DomainEventHandler\" />
   </ItemGroup>
 
 

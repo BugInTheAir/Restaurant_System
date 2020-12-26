@@ -1,0 +1,2 @@
+obj\Release\netcoreapp3.1\Protos/DataService.cs \
+obj\Release\netcoreapp3.1\Protos/DataServiceGrpc.cs: Protos/dataService.proto
