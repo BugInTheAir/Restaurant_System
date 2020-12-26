@@ -2,12 +2,14 @@
 using Restaurant.Domain.Events;
 using Restaurant.Domain.Seedwork;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Restaurant.Domain.Aggregates.RestaurantAggregate
 {
-    public class Restaurant : Entity, IAggregateRoot
+    public class Restaurants : Entity, IAggregateRoot
     {
         public string TenantId { get; private set; }
         public Address Address { get; private set; }
@@ -15,14 +17,17 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
         public int Seats { get; private set; }
         public RestaurantType RestaurantType { get; private set; }
         public WorkTime WorkTime { get; private set; }
+        private readonly List<ResImage> _resImages;
+        public IEnumerable<ResImage> ResImages => _resImages;
         private readonly List<RestaurantAndMenu> _restaurantAndMenus;
         public IEnumerable<RestaurantAndMenu> RestaurantAndMenus => _restaurantAndMenus;
-        protected Restaurant()
+        protected Restaurants()
         {
+            _resImages = new List<ResImage>();
             _restaurantAndMenus = new List<RestaurantAndMenu>();
             this.TenantId = "Res-" + DateTime.Now.ToShortDateString() + "-" + Guid.NewGuid().ToString().Split("-")[0];
         }
-        public Restaurant(string name, string street, string district, string ward,string openTime, string closeTime,int seats, List<string> menus):this()
+        public Restaurants(string name, string street, string district, string ward, string openTime, string closeTime, int seats, List<string> menus, List<ResImage> images):this()
         {
             if (seats <= 0)
                 throw new Exception("Invalid seats");
@@ -35,7 +40,13 @@ namespace Restaurant.Domain.Aggregates.RestaurantAggregate
             {
                 _restaurantAndMenus.Add(new RestaurantAndMenu(this.TenantId, item));
             }
-            AddDomainEvent(new NewRestaurantCreatedDomainEvent(TenantId, Name, Address, WorkTime, verifiedItems));
+            _resImages = images;
+            List<string> url = new List<string>();
+            images.ForEach(x =>
+            {
+                url.Add(x.ImageUrl);
+            });
+            AddDomainEvent(new NewRestaurantCreatedDomainEvent(TenantId, Name, Address, WorkTime, verifiedItems, url));
         }
         //Bussiness
         public void AssignMenuToRestaurant(string menuId)

@@ -19,10 +19,11 @@ namespace Restaurant.Api.Application.Command
 
         public async Task<bool> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
         {
+            List<ResImage> resImagesUrl = null;
             var existedRestaurant =await _restaurantRepository.FindByNameAsync(request.ResName);
             if (existedRestaurant != null)
                 throw new Exception("This restaurant with this name has been existed");
-            var newRestaurant = new Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurant(request.ResName, request.Street, request.District, request.Ward, request.OpenTime, request.CloseTime, request.Seats, request.Menus);
+            var newRestaurant = new Restaurants(request.ResName, request.Street, request.District, request.Ward, request.OpenTime, request.CloseTime, request.Seats, request.Menus, resImagesUrl);
             _restaurantRepository.Add(newRestaurant);
             return await _restaurantRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
         }

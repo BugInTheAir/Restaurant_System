@@ -13,13 +13,15 @@ namespace Restaurant.Domain.Events
         public WorkTime WorkTime { get; private set; }
         public string ResId { get; private set; }
         public List<string> MenuIds { get; private set; }
-        public NewRestaurantCreatedDomainEvent(string resId,string restaurantName,Address address, WorkTime workTime, List<string> menus)
+        public List<string> Images { get; private set; }
+        public NewRestaurantCreatedDomainEvent(string resId,string restaurantName,Address address, WorkTime workTime, List<string> menus, List<string> images)
         {
             RestaurantName = restaurantName;
             Address = address;
             WorkTime = workTime;
             ResId = resId;
             MenuIds = menus;
+            Images = images;
         }
     }
 }

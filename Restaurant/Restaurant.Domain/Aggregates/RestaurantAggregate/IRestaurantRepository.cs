@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Domain.Aggregates.RestaurantAggregate
 {
-    public interface IRestaurantRepository : IRepository<Restaurant>
+    public interface IRestaurantRepository : IRepository<Restaurants>
     {
-        Restaurant Add(Restaurant res);
-        Restaurant Update(Restaurant res);
-        Task<Restaurant> FindByIdAsync(string id);
-        Task<Restaurant> FindByNameAsync(string name);
+        Restaurants Add(Restaurants res);
+        Restaurants Update(Restaurants res);
+        Task<Restaurants> FindByIdAsync(string id);
+        Task<Restaurants> FindByNameAsync(string name);
     }
 }

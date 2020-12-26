@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Restaurant.Infrastructure.EntityTypeConfigs
 {
-    public class RestaurantEntityTypeConfiguration : IEntityTypeConfiguration<Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurant>
+    public class RestaurantEntityTypeConfiguration : IEntityTypeConfiguration<Restaurants>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurant> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Restaurants> builder)
         {
             builder.ToTable("Restaurant", RestaurantContext.DEFFAULT_SCHEMA);
             builder.HasKey(r => r.TenantId);
@@ -27,8 +27,13 @@ namespace Restaurant.Infrastructure.EntityTypeConfigs
             builder.Property(r => r.TenantId).IsRequired().HasColumnName("ResId");
             builder.HasIndex(x => x.Name).IsUnique();
             builder.HasOne(x => x.RestaurantType).WithMany().OnDelete(DeleteBehavior.Restrict);
-            builder.HasMany(r => r.RestaurantAndMenus).WithOne().HasForeignKey(x=>x.ResId).OnDelete(DeleteBehavior.Cascade);
-            var navigation = builder.Metadata.FindNavigation(nameof(Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurant.RestaurantAndMenus));
+
+            builder.HasMany(r => r.ResImages).WithOne().OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(r => r.RestaurantAndMenus).WithOne().HasForeignKey(x => x.ResId).OnDelete(DeleteBehavior.Cascade);
+
+            var imagesNavigation = builder.Metadata.FindNavigation(nameof(Restaurants.ResImages));
+            imagesNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+            var navigation = builder.Metadata.FindNavigation(nameof(Restaurants.RestaurantAndMenus));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
         }

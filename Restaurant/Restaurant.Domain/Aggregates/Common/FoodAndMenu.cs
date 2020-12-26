@@ -15,7 +15,7 @@ namespace Restaurant.Domain.Aggregates.Common
         {
             TenantId = $"FM-{DateTime.Now.ToShortDateString()}-{Guid.NewGuid().ToString().Split('-')[0]}";
         }
-        public FoodAndMenu(string foodId, string menuId)
+        public FoodAndMenu(string foodId, string menuId):this()
         {
             FoodId = foodId;
             MenuId = menuId;

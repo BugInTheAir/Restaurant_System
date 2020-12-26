@@ -13,13 +13,14 @@ using System.Threading.Tasks;
 using Restaurant.Domain.Seedwork;
 using Restaurant.Domain.Aggregates.Common;
 using Restaurant.Domain.Aggregates.FoodAggregate;
+using Restaurant.Infrastructure.EntityTypeConfigs.Restaurant;
 
 namespace Restaurant.Infrastructure
 {
     public class RestaurantContext : DbContext, IUnitOfWork
     {
         public static string DEFFAULT_SCHEMA = "dbo";
-        public DbSet<Restaurant.Domain.Aggregates.RestaurantAggregate.Restaurant> Restaurants { get; set; }
+        public DbSet<Restaurants> Restaurants { get; set; }
         public DbSet<RestaurantAndMenu> RestaurantAndMenus { get; set; }
         public DbSet<FoodAndMenu> FoodAndMenus { get; set; }
         public DbSet<FoodItem> FoodItems{ get; set; }
@@ -38,6 +39,7 @@ namespace Restaurant.Infrastructure
             modelBuilder.ApplyConfiguration(new FoodEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new MenuEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new FoodAndMenuEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new RestaurantImageEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)

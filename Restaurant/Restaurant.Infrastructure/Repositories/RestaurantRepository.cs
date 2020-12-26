@@ -22,7 +22,7 @@ namespace Restaurant.Infrastructure.Repositories
         {
             _context = context ?? throw new ArgumentNullException(nameof(_context));
         }
-        public Domain.Aggregates.RestaurantAggregate.Restaurant Add(Domain.Aggregates.RestaurantAggregate.Restaurant res)
+        public Restaurants Add(Restaurants res)
         {
             if (res.IsTransient())
             {
@@ -34,20 +34,20 @@ namespace Restaurant.Infrastructure.Repositories
             }
         }
 
-        public async Task<Domain.Aggregates.RestaurantAggregate.Restaurant> FindByIdAsync(string id)
+        public async Task<Restaurants> FindByIdAsync(string id)
         {
             var res = await _context.Restaurants.Include(m => new { m.RestaurantAndMenus, m.RestaurantType }).Where(m => m.TenantId == id).FirstOrDefaultAsync();
             return res;
         }
 
-        public Domain.Aggregates.RestaurantAggregate.Restaurant Update(Domain.Aggregates.RestaurantAggregate.Restaurant res)
+        public Restaurants Update(Restaurants res)
         {
             return _context.Restaurants
                    .Update(res)
                    .Entity;
         }
 
-        public async Task<Domain.Aggregates.RestaurantAggregate.Restaurant> FindByNameAsync(string name)
+        public async Task<Restaurants> FindByNameAsync(string name)
         {
             var res = await _context.Restaurants.Include(m => new { m.RestaurantAndMenus, m.RestaurantType }).Where(m => m.Name == name).FirstOrDefaultAsync();
             return res;
