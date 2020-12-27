@@ -8,6 +8,7 @@ namespace Book.Domain.Aggregates.BookingAggregate
     public class BookTicket : Entity, IAggregateRoot
     {
         public string TenantId { get; private set; }
+        public string ResId { get; private set; }
         public string BookerId { get; private set; }
         public DateTime CreatedDate { get; private set; }
         public BookTicketInfo BookInfo { get; private set; }
@@ -21,12 +22,11 @@ namespace Book.Domain.Aggregates.BookingAggregate
             IsCanceled = false;
         }
 
-        public BookTicket(string tenantId, string bookerId, DateTime createdDate, BookTicketInfo bookInfo):this()
+        public BookTicket(string bookerId, string resId, BookTicketInfo bookInfo):this()
         {
-            TenantId = tenantId;
             BookerId = bookerId;
-            CreatedDate = createdDate;
             BookInfo = bookInfo;
+            ResId = resId;
         }
         public void FinishBooking()
         {

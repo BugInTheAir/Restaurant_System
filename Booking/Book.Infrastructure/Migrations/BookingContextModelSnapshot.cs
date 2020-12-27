@@ -60,6 +60,10 @@ namespace Book.Infrastructure.Migrations
                     b.Property<bool>("IsFinished")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ResId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TenantId");
 
                     b.HasIndex("BookerId");
@@ -110,14 +114,11 @@ namespace Book.Infrastructure.Migrations
                             b1.Property<string>("AtDate")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.Property<string>("AtHour")
-                                .HasColumnType("nvarchar(max)");
+                            b1.Property<int>("AtHour")
+                                .HasColumnType("int");
 
-                            b1.Property<string>("AtMinute")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("BookerId")
-                                .HasColumnType("nvarchar(max)");
+                            b1.Property<int>("AtMinute")
+                                .HasColumnType("int");
 
                             b1.Property<string>("Note")
                                 .HasColumnType("nvarchar(max)");

@@ -11,5 +11,6 @@ namespace Book.Domain.Aggregates
     {
         Booker Add(Booker booker);
         Task<Booker> FindByNameAsync(string name);
+        Task<IEnumerable<Booker>> FindAllByNameAsync(string name);
     }
 }

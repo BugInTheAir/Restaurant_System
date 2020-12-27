@@ -34,12 +34,12 @@ namespace Book.Infrastructure.Migrations
                 columns: table => new
                 {
                     BookId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ResId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BookerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BookInfo_BookerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BookInfo_AtDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BookInfo_AtHour = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BookInfo_AtMinute = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookInfo_AtHour = table.Column<int>(type: "int", nullable: true),
+                    BookInfo_AtMinute = table.Column<int>(type: "int", nullable: true),
                     BookInfo_Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsFinished = table.Column<bool>(type: "bit", nullable: false),
                     IsCanceled = table.Column<bool>(type: "bit", nullable: false),

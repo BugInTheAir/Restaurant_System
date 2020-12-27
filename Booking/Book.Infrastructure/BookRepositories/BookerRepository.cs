@@ -30,6 +30,11 @@ namespace Book.Infrastructure.BookRepositories
             return booker;
         }
 
+        public async  Task<IEnumerable<Booker>> FindAllByNameAsync(string name)
+        {
+            return await _context.Bookers.Where(x => x.BookerInf.UserName == name).ToListAsync();
+        }
+
         public async Task<Booker> FindByNameAsync(string name)
         {
             var booker = await _context.Bookers.Where(x => x.BookerInf.UserName == name && !x.IsAnnonymous).FirstOrDefaultAsync();

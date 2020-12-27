@@ -20,6 +20,7 @@ namespace Book.Infrastructure.EntityTypeConfigs
             builder.Property(bt => bt.CreatedDate).UsePropertyAccessMode(PropertyAccessMode.Field);
             builder.Property(bt => bt.IsCanceled).UsePropertyAccessMode(PropertyAccessMode.Field);
             builder.Property(bt => bt.IsFinished).UsePropertyAccessMode(PropertyAccessMode.Field);
+            builder.Property(bt => bt.ResId).IsRequired();
             builder.Property(bt => bt.CreatedDate).UsePropertyAccessMode(PropertyAccessMode.Field);
             builder.OwnsOne(bt => bt.BookInfo, bi =>
            {

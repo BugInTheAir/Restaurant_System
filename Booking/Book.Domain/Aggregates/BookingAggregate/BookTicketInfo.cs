@@ -7,14 +7,12 @@ namespace Book.Domain.Aggregates.BookingAggregate
 {
     public class BookTicketInfo: ValueObject
     {
-        public string BookerId { get; private set; }
         public string AtDate { get; private set; }
-        public string AtHour { get; private set; }
-        public string AtMinute { get; private set; }
+        public int AtHour { get; private set; }
+        public int AtMinute { get; private set; }
         public string Note { get; private set; }
-        public BookTicketInfo(string bookerId, string atDate, string atHour, string atMinute, string note)
+        public BookTicketInfo(string atDate, int atHour, int atMinute, string note)
         {
-            BookerId = bookerId;
             AtDate = atDate;
             AtHour = atHour;
             AtMinute = atMinute;
@@ -23,7 +21,6 @@ namespace Book.Domain.Aggregates.BookingAggregate
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return BookerId;
             yield return AtDate;
             yield return AtHour;
             yield return AtMinute;
