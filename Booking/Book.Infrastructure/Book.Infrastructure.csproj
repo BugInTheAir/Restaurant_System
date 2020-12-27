@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EntityTypeConfigs\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Book.Domain\Book.Domain.csproj" />
   </ItemGroup>
 

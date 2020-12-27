@@ -12,3 +12,4 @@ C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Infrastructure\obj\Debug\netcoreapp3.1\Restaurant.Infrastructure.dll
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Infrastructure\obj\Debug\netcoreapp3.1\Restaurant.Infrastructure.pdb
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Infrastructure\obj\Debug\netcoreapp3.1\Restaurant.Infrastructure.genruntimeconfig.cache
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Infrastructure\obj\Debug\netcoreapp3.1\Restaurant.Infrastructure.csproj.CoreCompileInputs.cache

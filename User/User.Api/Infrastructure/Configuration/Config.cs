@@ -25,7 +25,7 @@ namespace User.Api.Infrastructure.Configuration
                 new ApiResource("booking.api", "Booking Api"),
                 new ApiResource("identity.api", "Identity Api"),
                 new ApiResource("user.api", "User Api"),
-                new ApiResource("restaurant.api", "Restaurant Api"),
+                new ApiResource("restaurant.api", "Restaurant Api")
             };
         }
         public static IEnumerable<ApiScope> GetScopes()

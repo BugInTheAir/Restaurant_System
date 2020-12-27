@@ -6,4 +6,3 @@ C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Domain\obj\Debug\netcoreapp3.1\Restaurant.Domain.csproj.CoreCompileInputs.cache
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Domain\obj\Debug\netcoreapp3.1\Restaurant.Domain.dll
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Domain\obj\Debug\netcoreapp3.1\Restaurant.Domain.pdb
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Restaurant\Restaurant.Domain\obj\Debug\netcoreapp3.1\Restaurant.Domain.csprojAssemblyReference.cache
