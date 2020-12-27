@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using Book.Api.Applications.Behaviors;
 using Book.Api.Applications.Commands;
+using Book.Api.Applications.Validations;
+using Book.Domain.Events;
+using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -20,15 +23,15 @@ namespace Book.Api.Infrastructures.Modules
             builder.RegisterAssemblyTypes(typeof(CreateBookingTicketCommand).GetTypeInfo().Assembly)
                 .AsClosedTypesOf(typeof(IRequestHandler<,>));
 
-            ////Register domain events
-            //builder.RegisterAssemblyTypes(typeof(NewRestaurantCreatedDomainEvent).GetTypeInfo().Assembly)
-            //   .AsClosedTypesOf(typeof(INotificationHandler<>));
+            //Register domain events
+            builder.RegisterAssemblyTypes(typeof(BookTicketCreatedDomainEvent).GetTypeInfo().Assembly)
+               .AsClosedTypesOf(typeof(INotificationHandler<>));
 
-            ////Register Validators
-            //builder
-            //    .RegisterAssemblyTypes(typeof(CreateFoodCommandValidator).GetTypeInfo().Assembly)
-            //    .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
-            //    .AsImplementedInterfaces();
+            //Register Validators
+            builder
+                .RegisterAssemblyTypes(typeof(CreateBookingTicketCommandValidator).GetTypeInfo().Assembly)
+                .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
+                .AsImplementedInterfaces();
 
 
             builder.Register<ServiceFactory>(context =>

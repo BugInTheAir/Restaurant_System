@@ -1,4 +1,5 @@
-﻿using Book.Domain.Seedwork;
+﻿using Book.Domain.Events;
+using Book.Domain.Seedwork;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,11 +23,12 @@ namespace Book.Domain.Aggregates.BookingAggregate
             IsCanceled = false;
         }
 
-        public BookTicket(string bookerId, string resId, BookTicketInfo bookInfo):this()
+        public BookTicket(string bookerId, string resId, BookTicketInfo bookInfo) : this()
         {
             BookerId = bookerId;
             BookInfo = bookInfo;
             ResId = resId;
+            AddDomainEvent(new BookTicketCreatedDomainEvent(ResId, $"{ConvertTimeToString(BookInfo.AtHour)}:{ConvertTimeToString(BookInfo.AtMinute)} {BookInfo.AtDate}", BookerId));
         }
         public void FinishBooking()
         {
@@ -35,7 +37,13 @@ namespace Book.Domain.Aggregates.BookingAggregate
         public void CancelBooking()
         {
             this.IsCanceled = true;
-            
+            AddDomainEvent(new BookTicketCanceledDomainEvent(BookerId, ResId, $"{ConvertTimeToString(BookInfo.AtHour)}:{ConvertTimeToString(BookInfo.AtMinute)} {BookInfo.AtDate}"));
+        }
+        private string ConvertTimeToString(int time)
+        {
+            if (time > 10)
+                return time.ToString();
+            return "0" + time.ToString();
         }
     }
 }

@@ -7,6 +7,8 @@ namespace Book.Api.Applications.Models
 {
     public class UserBookingViewModel
     {
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public string UserName { get; set; }
         public string AtDate { get; set; }
         public int AtHour { get; set; }

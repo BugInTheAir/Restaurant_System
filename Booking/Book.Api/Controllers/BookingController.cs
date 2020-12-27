@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Book.Api.Applications.Commands;
 using Book.Api.Applications.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -28,7 +29,12 @@ namespace Book.Api.Controllers
         {
             try
             {
-
+                var date = DateTime.Parse(model.AtDate);
+                if (DateTime.Parse(model.AtDate).Date.Subtract(DateTime.Now.Date).Ticks < 0)
+                    return BadRequest("Invalid booking time");
+                await _mediator.Send(new CreateBookingTicketCommand(model.ResId, model.UserName, model.Email, model.Phone,
+                    model.Note, date.ToShortDateString(), model.AtHour, model.AtMinute, true));
+                return Ok("Created");
             }
             catch (Exception ex)
             {
@@ -44,7 +50,12 @@ namespace Book.Api.Controllers
         {
             try
             {
-
+                var date = DateTime.Parse(model.AtDate);
+                if (DateTime.Parse(model.AtDate).Date.Subtract(DateTime.Now.Date).Ticks < 0)
+                    return BadRequest("Invalid booking time");
+                await _mediator.Send(new CreateBookingTicketCommand(model.ResId, model.UserName, model.Email, model.Phone,
+                    model.Note, date.ToShortDateString(), model.AtHour, model.AtMinute, false));
+                return Ok("Created");
             }
             catch (Exception ex)
             {
