@@ -5,6 +5,7 @@ using Restaurant.Domain.Aggregates.RestaurantAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -46,7 +47,7 @@ namespace Restaurant.Api.Application.Command
             for(int i = 0; i < request.Images.Count; i++)
             {
                 var imageName = $"RI-{DateTime.Now.ToShortDateString().Replace("/", "-")}-{Guid.NewGuid().ToString().Split('-')[0]}";
-                var url = await UploadFoodImage(imageName, request.Images[i].FileExt, request.Images[i].RawImage);
+                var url = await UploadResImage(imageName, request.Images[i].FileExt, request.Images[i].RawImage);
                 resImagesUrl.Add(new ResImage(url, request.Images[i].FileExt));
             }
            
@@ -54,9 +55,14 @@ namespace Restaurant.Api.Application.Command
             _restaurantRepository.Add(newRestaurant);
             return await _restaurantRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
         }
-        private async Task<string> UploadFoodImage(string imgName, string imgExt, byte[] rawImg)
+        private async Task<string> UploadResImage(string imgName, string imgExt, byte[] rawImg)
         {
-            using var channel = GrpcChannel.ForAddress("https://localhost:5008");
+            var httpHandler = new HttpClientHandler();
+            // Return `true` to allow certificates that are untrusted/invalid
+            httpHandler.ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            using var channel = GrpcChannel.ForAddress("https://localhost:5008", new GrpcChannelOptions { HttpHandler = httpHandler });
             var client = new UploadService.UploadServiceClient(channel);
             try
             {
