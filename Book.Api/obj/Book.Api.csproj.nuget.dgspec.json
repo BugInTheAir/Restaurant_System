@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Booking\\Book.Api\\Book.Api.csproj": {}
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Book.Api\\Book.Api.csproj": {}
   },
   "projects": {
-    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Booking\\Book.Api\\Book.Api.csproj": {
+    "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Book.Api\\Book.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Booking\\Book.Api\\Book.Api.csproj",
+        "projectUniqueName": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Book.Api\\Book.Api.csproj",
         "projectName": "Book.Api",
-        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Booking\\Book.Api\\Book.Api.csproj",
+        "projectPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Book.Api\\Book.Api.csproj",
         "packagesPath": "C:\\Users\\cefvi\\.nuget\\packages\\",
-        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Booking\\Book.Api\\obj\\",
+        "outputPath": "C:\\LTUDW\\NT_208.L11\\Backend\\Restaurant_System_Ver_1\\Restaurant_System_Version_1\\Restaurant_System\\Book.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cefvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,20 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "dependencies": {
-            "Autofac": {
-              "target": "Package",
-              "version": "[6.1.0, )"
-            },
-            "Autofac.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[7.1.0, )"
-            },
-            "IdentityServer4.AccessTokenValidation": {
-              "target": "Package",
-              "version": "[3.0.1, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
