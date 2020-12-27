@@ -1,8 +1,0 @@
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\bin\Debug\netcoreapp3.1\Book.Infrastructure.deps.json
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\bin\Debug\netcoreapp3.1\Book.Infrastructure.dll
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\obj\Debug\netcoreapp3.1\Book.Infrastructure.csprojAssemblyReference.cache
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\obj\Debug\netcoreapp3.1\Book.Infrastructure.AssemblyInfoInputs.cache
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\obj\Debug\netcoreapp3.1\Book.Infrastructure.AssemblyInfo.cs
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\bin\Debug\netcoreapp3.1\Book.Infrastructure.runtimeconfig.json
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\bin\Debug\netcoreapp3.1\Book.Infrastructure.runtimeconfig.dev.json
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Infrastructure\obj\Debug\netcoreapp3.1\Book.Infrastructure.genruntimeconfig.cache

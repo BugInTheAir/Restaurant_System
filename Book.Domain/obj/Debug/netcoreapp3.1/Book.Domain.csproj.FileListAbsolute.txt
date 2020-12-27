@@ -1,5 +1,0 @@
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Domain\bin\Debug\netcoreapp3.1\Book.Domain.deps.json
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Domain\bin\Debug\netcoreapp3.1\Book.Domain.dll
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Domain\obj\Debug\netcoreapp3.1\Book.Domain.csprojAssemblyReference.cache
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Domain\obj\Debug\netcoreapp3.1\Book.Domain.AssemblyInfoInputs.cache
-C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Book.Domain\obj\Debug\netcoreapp3.1\Book.Domain.AssemblyInfo.cs
