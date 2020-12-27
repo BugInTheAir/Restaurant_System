@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Book.Api.Applications.Queries;
 using Book.Domain.Aggregates;
 using Book.Domain.Aggregates.BookingAggregate;
 using Book.Infrastructure.BookRepositories;
@@ -19,8 +20,7 @@ namespace Book.Api.Infrastructures.Modules
         }
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.Register(c => new RestaurantQueries(_connectionString)).As<IRestaurantQueries>();
-
+            builder.Register(c => new BookTicketQueriescs(_connectionString)).As<IBookTicketQueries>();
             builder.RegisterType<BookerRepository>().As<IBookerRepository>();
             builder.RegisterType<BookTicketRepository>().As<IBookingRepository>();
         }

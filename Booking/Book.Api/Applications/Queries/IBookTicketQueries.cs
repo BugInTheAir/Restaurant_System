@@ -8,6 +8,6 @@ namespace Book.Api.Applications.Queries
 {
     public interface IBookTicketQueries
     {
-        Task<UserBookTicketViewModelcs> GetUserBookTickets(string userName);
+        Task<List<UserBookTicketViewModel>> GetUserBookTickets(string userName);
     }
 }

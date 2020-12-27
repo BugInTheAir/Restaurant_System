@@ -16,6 +16,24 @@ namespace User.Api.Application.Queries
             _connectionString = !string.IsNullOrWhiteSpace(constr) ? constr : throw new ArgumentNullException(nameof(constr));
         }
 
+        public async Task<List<string>> GetAllEmails()
+        {
+            using(var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var result = await connection.QueryAsync<dynamic>(@"select Email from dbo.AspNetUsers where EmailConfirmed = 1");
+                return ToEmails(result);
+            }
+        }
+        private List<string> ToEmails(dynamic obj)
+        {
+            List<string> emails = new List<string>();
+            foreach(var item in obj)
+            {
+                emails.Add(item.Email);
+            }
+            return emails;
+        }
         public async Task<UserProfileDTO> GetUserProfile(string userName)
         {
             using (var connection = new SqlConnection(_connectionString))

@@ -273,7 +273,7 @@ namespace Restaurant.Api.Controllers
         {
             try
             {
-                await _mediator.Send(new UpdateWorkHourCommand(model.ResId, GetOpenHours(model.OpenHour, model.OpenMinute, model.CloseHour, model.CloseMinute), GetCloseHour(model.OpenHour, model.OpenMinute, model.CloseHour, model.CloseMinute)));
+                await _mediator.Send(new UpdateWorkHourCommand(model.ResId, GetOpenHours(int.Parse(model.OpenHour), int.Parse(model.OpenMinute), int.Parse(model.CloseHour), int.Parse(model.CloseMinute)), GetCloseHour(int.Parse(model.OpenHour), int.Parse(model.OpenMinute), int.Parse(model.CloseHour), int.Parse(model.CloseMinute))));
                 return Ok("Updated");
             }
             catch (Exception ex)
@@ -308,7 +308,9 @@ namespace Restaurant.Api.Controllers
                 || openMinute < 0 || closeMinute < 0)
                 throw new Exception("Invalid hour");
             string tempHour, tempMinute;
-            if(openHour < 10)
+            if (openHour > closeHour)
+                throw new Exception("invalid hours");
+            if (openHour < 10)
             {
                 tempHour = "0" + openHour.ToString();
             }
@@ -332,21 +334,23 @@ namespace Restaurant.Api.Controllers
                 || openMinute < 0 || closeMinute < 0)
                 throw new Exception("Invalid hour");
             string tempHour, tempMinute;
-            if (openHour < 10)
+            if (openHour > closeHour)
+                throw new Exception("invalid hours");
+            if (closeHour < 10)
             {
-                tempHour = "0" + openHour.ToString();
+                tempHour = "0" + closeHour.ToString();
             }
             else
             {
-                tempHour = openHour.ToString();
+                tempHour = closeHour.ToString();
             }
             if (openMinute < 10)
             {
-                tempMinute = "0" + openMinute.ToString();
+                tempMinute = "0" + closeMinute.ToString();
             }
             else
             {
-                tempMinute = openMinute.ToString();
+                tempMinute = closeMinute.ToString();
             }
             return tempHour + ":" + tempMinute;
         }

@@ -1,5 +1,6 @@
 ﻿using Book.Domain.Aggregates.BookerAggregate;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Book.Infrastructure.EntityTypeConfigs
             }); 
             builder.Property(b => b.IsAnnonymous).IsRequired().UsePropertyAccessMode(PropertyAccessMode.Field);
             builder.Property(b => b.TenantId).HasColumnName("BookerId").IsRequired().UsePropertyAccessMode(PropertyAccessMode.Field);
-            builder.Property(b => b.Id).UseIdentityColumn().UsePropertyAccessMode(PropertyAccessMode.Field);
+            builder.Property(b => b.Id).UseIdentityColumn().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }
     }
 }

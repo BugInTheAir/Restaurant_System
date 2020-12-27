@@ -1,6 +1,7 @@
 ﻿using Book.Domain.Aggregates.BookerAggregate;
 using Book.Domain.Aggregates.BookingAggregate;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Book.Infrastructure.EntityTypeConfigs
             builder.ToTable("BookTicket", BookingContext.DEFFAULT_SCHEMA);
             builder.Ignore(bt => bt.DomainEvents);
             builder.HasKey(bt => bt.TenantId);
+            builder.Property(bt => bt.Id).UseIdentityColumn().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             builder.Property(bt => bt.TenantId).HasColumnName("BookId").UsePropertyAccessMode(PropertyAccessMode.Field);
             builder.Property(bt => bt.BookerId).IsRequired().UsePropertyAccessMode(PropertyAccessMode.Field);
             builder.Property(bt => bt.CreatedDate).UsePropertyAccessMode(PropertyAccessMode.Field);

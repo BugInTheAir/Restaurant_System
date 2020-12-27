@@ -7,10 +7,10 @@ namespace Restaurant.Api.Application.ViewModels
 {
     public class RestaurantWorkTimeChangeViewModel
     {
-        public int OpenHour { get; set; }
-        public int OpenMinute { get; set; }
-        public int CloseHour { get; set; }
-        public int CloseMinute { get; set; }
+        public string OpenHour { get; set; }
+        public string OpenMinute { get; set; }
+        public string CloseHour { get; set; }
+        public string CloseMinute { get; set; }
         public string ResId { get; set; }
     }
 }

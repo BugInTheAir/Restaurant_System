@@ -46,9 +46,17 @@ namespace Restaurant.Infrastructure
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            await _mediator.DispatchDomainEventsAsync(this);
-            var result = await base.SaveChangesAsync(cancellationToken);
-            return true;
+            try
+            {
+                await _mediator.DispatchDomainEventsAsync(this);
+                var result = await base.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+           
         }
     }
     public class OrderingContextDesignFactory : IDesignTimeDbContextFactory<RestaurantContext>

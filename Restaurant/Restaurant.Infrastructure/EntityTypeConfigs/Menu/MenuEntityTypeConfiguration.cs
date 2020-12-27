@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Restaurant.Domain.Aggregates.Common;
 using Restaurant.Domain.Aggregates.MenuAggregate;
@@ -16,7 +17,7 @@ namespace Restaurant.Infrastructure.EntityTypeConfigs
             builder.Ignore(x => x.DomainEvents);
             builder.HasKey(x => x.TenantId);
             builder.Property(x => x.TenantId).HasColumnName("MenuId").IsRequired();
-            builder.Property<int>("Id").UseIdentityColumn();
+            builder.Property<int>("Id").UseIdentityColumn().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             builder.OwnsOne(x => x.MenuInfo, mi =>
             {
                 mi.WithOwner();

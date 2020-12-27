@@ -32,7 +32,7 @@ namespace Restaurant.Api.Application.Queries
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = @"select r.ResId, r.Name, r.Phone, m.MenuInfo_Name, m.MenuInfo_Des, r.Address_District, r.Address_Street, r.Address_Ward, r.Seats, r.WorkTime_OpenTime, r.WorkTime_CloseTime, t.TypeName, ri.ImageUrl, f.FoodInfo_FoodName, f.FoodInfo_Description, f.FoodInfo_ImageUrl from Restaurant r
+                var query = @"select r.ResId, r.Name, m.MenuId ,r.Phone, m.MenuInfo_Name, m.MenuInfo_Des, r.Address_District, r.Address_Street, r.Address_Ward, r.Seats, r.WorkTime_OpenTime, r.WorkTime_CloseTime, t.TypeName, ri.ImageUrl, f.FoodInfo_FoodName, f.FoodInfo_Description, f.FoodInfo_ImageUrl from Restaurant r
                               inner join ResAndMenu rm on r.ResId = rm.ResId
                               inner join Menu m on rm.MenuId = m.MenuId
                               inner join ResAndType rt on rt.ResId = r.ResId
@@ -111,7 +111,8 @@ namespace Restaurant.Api.Application.Queries
                         {
                             MenuName = item.MenuInfo_Name,
                             Description = item.MenuInfo_Des,
-                            FoodItems = foodItems
+                            FoodItems = foodItems,
+                            MenuId = item.MenuId
                         });
 
                     }
@@ -133,7 +134,8 @@ namespace Restaurant.Api.Application.Queries
                     {
                         Description = item.MenuInfo_Des,
                         MenuName = item.MenuInfo_Name,
-                        FoodItems = foodItems
+                        FoodItems = foodItems,
+                        MenuId = item.MenuId
                     });
                     types.Add(item.TypeName);
                     var res = new RestaurantInformationViewModel

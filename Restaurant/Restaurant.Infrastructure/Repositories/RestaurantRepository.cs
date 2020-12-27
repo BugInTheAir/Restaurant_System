@@ -43,8 +43,7 @@ namespace Restaurant.Infrastructure.Repositories
         public Restaurants Update(Restaurants res)
         {
             return _context.Restaurants
-                   .Update(res)
-                   .Entity;
+                   .Update(res).Entity;
         }
 
         public async Task<Restaurants> FindByNameAsync(string name)

@@ -3,6 +3,7 @@ using Restaurant.Api.Application.Queries;
 using Restaurant.Domain.Aggregates.FoodAggregate;
 using Restaurant.Domain.Aggregates.MenuAggregate;
 using Restaurant.Domain.Aggregates.RestaurantAggregate;
+using Restaurant.Infrastructure.ExternalServices;
 using Restaurant.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Restaurant.Api.Infrastructure.AutofacModules
             builder.RegisterType<MenuRepository>().As<IMenuRepository>().InstancePerLifetimeScope();
             builder.RegisterType<FoodItemRepository>().As<IFoodRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ResTypeRepository>().As<IResTypeRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EmailService>().As<IEmailService>().InstancePerLifetimeScope();
         }
     }
 }

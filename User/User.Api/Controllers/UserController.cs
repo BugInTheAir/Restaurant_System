@@ -134,8 +134,14 @@ namespace User.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
-        
+        [Route("email/all")]
+        [ProducesResponseType(typeof(List<string>),(int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> GetEmails()
+        {
+            return Ok(await _userQueries.GetAllEmails());
+        }
+        [HttpGet]
         [Route("password/recover")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

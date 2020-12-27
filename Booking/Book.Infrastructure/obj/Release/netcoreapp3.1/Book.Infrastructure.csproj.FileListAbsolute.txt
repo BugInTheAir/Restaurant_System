@@ -1,0 +1,15 @@
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\bin\Release\netcoreapp3.1\Book.Infrastructure.deps.json
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\bin\Release\netcoreapp3.1\Book.Infrastructure.runtimeconfig.json
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\bin\Release\netcoreapp3.1\Book.Infrastructure.runtimeconfig.dev.json
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\bin\Release\netcoreapp3.1\Book.Infrastructure.dll
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\bin\Release\netcoreapp3.1\Book.Infrastructure.pdb
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\bin\Release\netcoreapp3.1\Book.Domain.dll
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\bin\Release\netcoreapp3.1\Book.Domain.pdb
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.csprojAssemblyReference.cache
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.AssemblyInfoInputs.cache
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.AssemblyInfo.cs
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.csproj.CoreCompileInputs.cache
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.csproj.CopyComplete
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.dll
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.pdb
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Infrastructure\obj\Release\netcoreapp3.1\Book.Infrastructure.genruntimeconfig.cache

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Book.Infrastructure.Migrations
 {
     [DbContext(typeof(BookingContext))]
-    [Migration("20201227084205_Initial")]
+    [Migration("20201227140751_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,7 +54,9 @@ namespace Book.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<bool>("IsCanceled")
                         .HasColumnType("bit");

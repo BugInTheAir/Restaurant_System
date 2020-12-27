@@ -11,3 +11,4 @@ C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Domain\obj\Debug\netcoreapp3.1\Book.Domain.csproj.CoreCompileInputs.cache
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Domain\obj\Debug\netcoreapp3.1\Book.Domain.dll
 C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Domain\obj\Debug\netcoreapp3.1\Book.Domain.pdb
+C:\LTUDW\NT_208.L11\Backend\Restaurant_System_Ver_1\Restaurant_System_Version_1\Restaurant_System\Booking\Book.Domain\obj\Debug\netcoreapp3.1\Book.Domain.csprojAssemblyReference.cache

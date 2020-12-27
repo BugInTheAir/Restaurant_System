@@ -52,7 +52,9 @@ namespace Book.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<bool>("IsCanceled")
                         .HasColumnType("bit");

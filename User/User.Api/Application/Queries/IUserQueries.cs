@@ -9,5 +9,6 @@ namespace User.Api.Application.Queries
     public interface IUserQueries
     {
         Task<UserProfileDTO> GetUserProfile(string userName);
+        Task<List<string>> GetAllEmails();
     }
 }

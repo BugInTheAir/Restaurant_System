@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Restaurant.Domain.Aggregates.FoodAggregate;
 using System;
@@ -13,7 +14,7 @@ namespace Restaurant.Infrastructure.EntityTypeConfigs
         {
             builder.ToTable("FoodItem", RestaurantContext.DEFFAULT_SCHEMA);
             builder.HasKey(x => x.TenantId);
-            builder.Property<int>("Id").UseIdentityColumn();
+            builder.Property<int>("Id").UseIdentityColumn().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             builder.Property(x => x.TenantId).HasColumnName("FoodId").IsRequired();
             builder.Ignore(x => x.DomainEvents);
             builder.OwnsOne(x => x.FoodInfo, fi =>

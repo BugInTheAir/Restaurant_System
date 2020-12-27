@@ -11,8 +11,8 @@ namespace Book.Api.Applications.Models
         public string Phone { get; set; }
         public string UserName { get; set; }
         public string AtDate { get; set; }
-        public int AtHour { get; set; }
-        public int AtMinute { get; set; }
+        public string AtHour { get; set; }
+        public string AtMinute { get; set; }
         public string Note { get; set; }
         public string ResId { get; set; }
     }
