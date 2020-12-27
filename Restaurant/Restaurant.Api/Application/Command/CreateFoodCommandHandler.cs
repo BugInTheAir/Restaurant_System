@@ -1,9 +1,11 @@
-﻿using Grpc.Net.Client;
+﻿using Grpc.Core;
+using Grpc.Net.Client;
 using MediatR;
 using Restaurant.Domain.Aggregates.FoodAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,7 +42,12 @@ namespace Restaurant.Api.Application.Command
         }
         private async Task<string> UploadFoodImage(string imgName, string imgExt, byte[] rawImg)
         {
-            using var channel = GrpcChannel.ForAddress("https://localhost:5008");
+            var httpHandler = new HttpClientHandler();
+            // Return `true` to allow certificates that are untrusted/invalid
+            httpHandler.ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            using var channel = GrpcChannel.ForAddress("https://localhost:5008", new GrpcChannelOptions { HttpHandler = httpHandler });
             var client = new UploadService.UploadServiceClient(channel);
             try
             {
