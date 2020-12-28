@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Restaurant.Api.Application.Command;
@@ -12,8 +11,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Restaurant.Api.Controllers
@@ -24,12 +21,14 @@ namespace Restaurant.Api.Controllers
     {
         private readonly IRestaurantQueries _restaurantQueries;
         private readonly IMediator _mediator;
+
         public RestaurantController(IRestaurantQueries restaurantQueries, IMediator mediator)
         {
             _restaurantQueries = restaurantQueries;
             _mediator = mediator;
-        }
 
+        }
+   
        
         ///Menu section
         [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
