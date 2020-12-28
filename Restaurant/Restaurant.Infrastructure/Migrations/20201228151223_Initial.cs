@@ -209,6 +209,13 @@ namespace Restaurant.Infrastructure.Migrations
                 column: "MenuId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ResAndMenu_MenuId_ResId",
+                schema: "dbo",
+                table: "ResAndMenu",
+                columns: new[] { "MenuId", "ResId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ResAndMenu_ResId",
                 schema: "dbo",
                 table: "ResAndMenu",

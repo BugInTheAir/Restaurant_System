@@ -28,7 +28,7 @@ namespace Book.Domain.Aggregates.BookingAggregate
             BookerId = bookerId;
             BookInfo = bookInfo;
             ResId = resId;
-            AddDomainEvent(new BookTicketCreatedDomainEvent(ResId, $"{ConvertTimeToString(BookInfo.AtHour)}:{ConvertTimeToString(BookInfo.AtMinute)} {BookInfo.AtDate}", BookerId));
+            AddDomainEvent(new BookTicketCreatedDomainEvent(ResId, $"{ConvertTimeToString(BookInfo.AtHour)}:{ConvertTimeToString(BookInfo.AtMinute)} {BookInfo.AtDate}", TenantId, BookerId));
         }
         public void FinishBooking()
         {

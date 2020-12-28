@@ -9,12 +9,13 @@ namespace Book.Domain.Events
     {
         public string ResId { get; private set; }
         public string BookDate { get; private set; }
+        public string BookTicketId { get; private set; }
         public string BookerId { get; private set; }
-
-        public BookTicketCreatedDomainEvent(string resId, string bookDate, string bookerId)
+        public BookTicketCreatedDomainEvent(string resId, string bookDate, string ticketId, string bookerId)
         {
             ResId = resId;
             BookDate = bookDate;
+            BookTicketId = ticketId;
             BookerId = bookerId;
         }
     }

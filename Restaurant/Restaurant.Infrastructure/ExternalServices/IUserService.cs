@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Restaurant.Infrastructure.ExternalServices
 {
     public interface IUserService
     {
-        List<string> GetEmails();
+        Task<List<string>> GetEmails();
     }
 }

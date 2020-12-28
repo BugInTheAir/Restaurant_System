@@ -30,6 +30,7 @@ namespace Restaurant.Api.Controllers
             _mediator = mediator;
         }
 
+       
         ///Menu section
         [Authorize(AuthenticationSchemes = "Bearer", Policy = "Admin")]
         [Route("menu")]
@@ -129,6 +130,21 @@ namespace Restaurant.Api.Controllers
         ///End food section
 
         ///Restaurant section
+        [ProducesResponseType(typeof(RestaurantInfoViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [HttpGet]
+        public async Task<ActionResult> GetRestaurantAddressAndName(string id)
+        {
+            try
+            {
+                return  Ok(await _restaurantQueries.GetRestaurantName(id));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
         [Route("all")]
         [ProducesResponseType(typeof(List<RestaurantInformationViewModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

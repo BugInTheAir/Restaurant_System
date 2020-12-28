@@ -16,6 +16,7 @@ namespace Restaurant.Infrastructure.EntityTypeConfigs
             builder.HasKey(x => new { x.MenuId, x.ResId, x.TenantId });
             builder.Ignore(x => x.DomainEvents);
             builder.Property<int>("Id").UseIdentityColumn().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.HasIndex(x => new { x.MenuId, x.ResId }).IsUnique();
             builder.Property(x => x.MenuId).IsRequired();
             builder.Property(x => x.ResId).IsRequired();
             builder.Property(x => x.TenantId).HasColumnName("ResAndMenuId").IsRequired();

@@ -19,9 +19,9 @@ namespace User.Api.Application.DomainEventHandler
         {
             _externalService = service;
         }
-        public async Task Handle(ValidateEmailDomainEvent notification, CancellationToken cancellationToken)
+        public Task Handle(ValidateEmailDomainEvent notification, CancellationToken cancellationToken)
         {
-            await _externalService.RequestSendEmailVerification(new EmailRequest(notification.EmailToValidate, notification.ContentToSend));
+            return _externalService.RequestSendEmailVerification(new EmailRequest(notification.EmailToValidate, notification.ContentToSend));
         }
     }
 }

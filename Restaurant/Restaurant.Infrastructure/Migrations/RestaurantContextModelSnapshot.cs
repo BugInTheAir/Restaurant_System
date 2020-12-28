@@ -94,6 +94,9 @@ namespace Restaurant.Infrastructure.Migrations
 
                     b.HasIndex("ResId");
 
+                    b.HasIndex("MenuId", "ResId")
+                        .IsUnique();
+
                     b.ToTable("ResAndMenu", "dbo");
                 });
 

@@ -18,10 +18,10 @@ namespace User.Api.Application.DomainEventHandler.SendEmailValidation
         {
             _externalService = service;
         }
-        public async Task Handle(PasswordTokenGeneratedDomainEvent notification, CancellationToken cancellationToken)
+        public Task Handle(PasswordTokenGeneratedDomainEvent notification, CancellationToken cancellationToken)
         {
             string content = $"<h1>Your password verification code is: {notification.Token} </h1>";
-            await _externalService.RequestSendEmailVerification(new EmailRequest(notification.EmailToSend,content));
+            return _externalService.RequestSendEmailVerification(new EmailRequest(notification.EmailToSend,content));
         }
     }
 }

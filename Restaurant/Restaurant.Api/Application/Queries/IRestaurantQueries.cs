@@ -11,5 +11,6 @@ namespace Restaurant.Api.Application.Queries
         Task<List<RestaurantInformationViewModel>> GetRestaurant(string typeId, string street);
         Task<List<FoodItemViewModel>> GetFoodItems();
         Task<List<MenuViewModel>> GetMenus();
+        Task<RestaurantInfoViewModel> GetRestaurantName(string resId);
     }
 }

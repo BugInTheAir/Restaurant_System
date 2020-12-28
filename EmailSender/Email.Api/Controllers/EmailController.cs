@@ -27,5 +27,6 @@ namespace Email.Api.Controllers
             _service.SendEmail(dto);
             return Ok();
         }
+       
     }
 }

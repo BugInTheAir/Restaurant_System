@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Restaurant.Api.Application.ViewModels;
+using Restaurant.Infrastructure.ExternalServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -228,5 +229,25 @@ namespace Restaurant.Api.Application.Queries
             }
             return menus;
         }
+        public async Task<RestaurantInfoViewModel> GetRestaurantName(string resId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var query = @"select r.Name, r.Address_District, r.Address_Street, r.Address_Ward from dbo.Restaurant r where r.ResId = @resId";
+                var result = await connection.QueryAsync<dynamic>(query, new { resId });
+                return ToRestaurantInfoViewModel(result.FirstOrDefault());
+            }
+        }
+        public RestaurantInfoViewModel ToRestaurantInfoViewModel(dynamic obj)
+        {
+            return new RestaurantInfoViewModel
+            {
+                Address = $"{obj.Address_Street}, {obj.Address_Ward}, {obj.Address_District}",
+                Name = obj.Name
+            };
+        }
+
+    
     }
 }

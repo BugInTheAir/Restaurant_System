@@ -9,7 +9,7 @@ using Restaurant.Infrastructure;
 namespace Restaurant.Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantContext))]
-    [Migration("20201226070556_Initial")]
+    [Migration("20201228151223_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,6 +95,9 @@ namespace Restaurant.Infrastructure.Migrations
                     b.HasKey("MenuId", "ResId", "TenantId");
 
                     b.HasIndex("ResId");
+
+                    b.HasIndex("MenuId", "ResId")
+                        .IsUnique();
 
                     b.ToTable("ResAndMenu", "dbo");
                 });
