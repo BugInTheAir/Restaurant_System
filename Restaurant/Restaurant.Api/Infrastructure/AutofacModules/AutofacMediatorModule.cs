@@ -3,8 +3,8 @@ using FluentValidation;
 using MediatR;
 using Restaurant.Api.Application.Behaviors;
 using Restaurant.Api.Application.Command;
+using Restaurant.Api.Application.DomainEventHandler;
 using Restaurant.Api.Application.Validators;
-using Restaurant.Domain.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace Restaurant.Api.Infrastructure.AutofacModules
                 .AsClosedTypesOf(typeof(IRequestHandler<,>));
 
             //Register domain events
-            builder.RegisterAssemblyTypes(typeof(NewRestaurantCreatedDomainEvent).GetTypeInfo().Assembly)
+            builder.RegisterAssemblyTypes(typeof(NewRestaurantCreatedDomainEventHandler).GetTypeInfo().Assembly)
                .AsClosedTypesOf(typeof(INotificationHandler<>));
 
             //Register Validators

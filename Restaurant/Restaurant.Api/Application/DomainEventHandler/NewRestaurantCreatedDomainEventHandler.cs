@@ -26,6 +26,7 @@ namespace Restaurant.Api.Application.DomainEventHandler
                 $"our phone number: {notification.Phone}";
             var emailToSend = await _userService.GetEmails();
             emailToSend.ForEach(x => _emailService.SendMail(new EmailRequest(x, contentSend)));
+            
         }
     }
 }
