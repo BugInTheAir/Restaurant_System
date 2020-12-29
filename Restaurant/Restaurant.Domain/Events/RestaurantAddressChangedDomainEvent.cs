@@ -11,7 +11,10 @@ namespace Restaurant.Domain.Events
         public string RestaurantName { get; private set; }
         public Address OldAddress { get; private set; }
         public Address NewAddress { get; private set; }
-
+        public string ToAddress(Address address)
+        {
+            return $"{address.Street},{address.Ward},{address.District}";
+        }
         public RestaurantAddressChangedDomainEvent(string restaurantName, Address oldAddress, Address newAddress)
         {
             RestaurantName = restaurantName;

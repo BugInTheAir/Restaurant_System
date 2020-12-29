@@ -19,5 +19,6 @@ namespace Restaurant.Infrastructure.ExternalServices
             client.ExecuteAsync(request);
 
         }
+        
     }
 }

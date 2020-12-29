@@ -25,10 +25,10 @@ namespace Book.Api.Infrastructures.Modules
             builder.Register(c => new BookTicketQueriescs(_connectionString)).As<IBookTicketQueries>();
             builder.RegisterType<BookerRepository>().As<IBookerRepository>();
             builder.RegisterType<BookTicketRepository>().As<IBookingRepository>();
-            builder.Register(c => new BookerQueries(_connectionString)).As<IBookerQueries>();
-            builder.RegisterType<EmailService>().As<IEmailService>();
-            builder.RegisterType<MailHtmlFactory>().As<IMailHtmlFactory>();
-            builder.RegisterType<ResService>().As<IResService>();
+            builder.Register(c => new BookerQueries(_connectionString)).As<IBookerQueries>().InstancePerLifetimeScope();
+            builder.RegisterType<EmailService>().As<IEmailService>().InstancePerLifetimeScope();
+            builder.RegisterType<MailHtmlFactory>().As<IMailHtmlFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<ResService>().As<IResService>().InstancePerLifetimeScope();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Book.Api.Applications.Behaviors;
 using Book.Api.Applications.Commands;
+using Book.Api.Applications.DomainEventHandler;
 using Book.Api.Applications.Validations;
-using Book.Domain.Events;
 using FluentValidation;
 using MediatR;
 using System;
@@ -24,7 +24,7 @@ namespace Book.Api.Infrastructures.Modules
                 .AsClosedTypesOf(typeof(IRequestHandler<,>));
 
             //Register domain events
-            builder.RegisterAssemblyTypes(typeof(BookTicketCreatedDomainEvent).GetTypeInfo().Assembly)
+            builder.RegisterAssemblyTypes(typeof(BookTicketCreatedDomainEventHandler).GetTypeInfo().Assembly)
                .AsClosedTypesOf(typeof(INotificationHandler<>));
 
             //Register Validators
